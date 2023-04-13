@@ -4,6 +4,9 @@
 -- ------------------------------------------------------
 -- Server version	8.0.32
 
+create database if not exists SIGMA;
+use sigma;
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -73,6 +76,7 @@ CREATE TABLE `donaciones` (
   `APELLIDO_2` varchar(50) DEFAULT NULL,
   `CENTRO` bit(1) DEFAULT NULL,
   `FERIA` bit(1) DEFAULT NULL,
+  `FECHA` date default null,
   `ID` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -143,11 +147,7 @@ CREATE TABLE `familias` (
   `TERRAZA` bit(1) DEFAULT NULL,
   `BALCON` bit(1) DEFAULT NULL,
   `JARDIN` bit(1) DEFAULT NULL,
-  `EDAD_MIEMBRO1` int DEFAULT NULL,
-  `EDAD_MIEMBRO2` int DEFAULT NULL,
-  `EDAD_MIEMBRO3` int DEFAULT NULL,
-  `EDAD_MIEMBRO4` int DEFAULT NULL,
-  `EDAD_MIEMBRO5` int DEFAULT NULL,
+  `EDAD_MIEMBROS_FAMILIA` varchar(255) DEFAULT NULL,
   `ALERGIAS` varchar(100) DEFAULT NULL,
   `HORAS_SOLO` int DEFAULT NULL,
   `ACCESO_EXTERIOR` bit(1) DEFAULT NULL,
