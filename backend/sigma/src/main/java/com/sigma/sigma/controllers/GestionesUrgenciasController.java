@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/gestionesUrgencias/")
@@ -20,7 +21,7 @@ public class GestionesUrgenciasController {
     }
 
     @GetMapping("{id}")
-    public GestionesUrgencias getGestionesUrgenciasById(@PathVariable Long id){
+    public Optional<GestionesUrgencias> getGestionesUrgenciasById(@PathVariable Long id){
         return gestionesUrgenciasService.findById(id);
     }
 

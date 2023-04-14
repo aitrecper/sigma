@@ -33,7 +33,7 @@ public class Animales {
     private String raza;
 
     @Column(name = "tipo_animal")
-    private TipoAnimal tipoAnimal;
+    private String tipoAnimal;
 
     @Column(name = "chip")
     private String chip;
