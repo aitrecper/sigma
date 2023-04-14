@@ -24,7 +24,7 @@ public class Facturas {
     private Long numFacturaReal;
 
     @Column(name = "tipologia")
-    private Tipologia tipologia;
+    private String tipologia;
 
     @Column(name = "fichero")
     private String fichero;
@@ -35,9 +35,8 @@ public class Facturas {
     @Column(name = "pagada")
     private Boolean pagada;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @Column(name = "chip")
-    private int chip;
+//    @PrimaryKeyJoinColumn(name = "chip")
+    private String chip;
 
     @Column(name = "jaula")
     private int jaula;

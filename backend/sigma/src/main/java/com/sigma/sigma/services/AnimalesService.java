@@ -35,6 +35,7 @@ public class AnimalesService {
     }
 
     public Animales update(Long id, Animales animales){
+        animales.setId(id);
         return animalesRepository.save(animales);
     }
 }

@@ -20,12 +20,18 @@ public class DonacionesController {
     }
 
     @GetMapping("/{id}")
-    public Donaciones getDonacionesById(Long id){
+    public Donaciones getDonacionesById(@PathVariable Long id){
         return donacionesService.findById(id);
     }
 
-    @PutMapping
-    public Donaciones updateDonaciones(@RequestBody Donaciones donaciones){
+    @PostMapping("/")
+    public Donaciones createDonaciones(@RequestBody Donaciones donaciones){
+        return donacionesService.save(donaciones);
+    }
+
+    @PutMapping("/{id}")
+    public Donaciones updateDonaciones(@PathVariable Long id, @RequestBody Donaciones donaciones){
+        donaciones.setId(id);
         return donacionesService.save(donaciones);
     }
 
@@ -35,7 +41,7 @@ public class DonacionesController {
     }
 
     @DeleteMapping("/{id}")
-    public String deleteDonacionesById(Long id){
+    public String deleteDonacionesById(@PathVariable Long id){
         return donacionesService.deleteById(id);
     }
 }
