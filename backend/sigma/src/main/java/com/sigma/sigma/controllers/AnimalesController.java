@@ -5,17 +5,21 @@ import com.sigma.sigma.services.AnimalesService;
 import com.sigma.sigma.util.AnimalesPdf;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+
 
 @RestController
 @RequestMapping("/api")
@@ -54,6 +58,7 @@ public class AnimalesController {
         return animalesService.deleteById(id);
     }
 
+    //https://www.devglan.com/spring-boot/spring-boot-file-upload-download
     @GetMapping("/pdf")
     public ResponseEntity<ByteArrayResource> getAnimalesPdf() throws IOException {
         AnimalesPdf animalesPdf = new AnimalesPdf();
@@ -62,13 +67,15 @@ public class AnimalesController {
         headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
         headers.add("Pragma", "no-cache");
         headers.add("Expires", "0");
+        headers.add("Content-Disposition", "attachment; filename=test.pdf");
+        MediaType mediaType = MediaType.parseMediaType("application/pdf");
+        headers.setContentType(mediaType);
         Path path = Paths.get(file.getAbsolutePath());
         ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
 
         return ResponseEntity.ok()
                 .headers(headers)
                 .contentLength(file.length())
-                .contentType(MediaType.APPLICATION_OCTET_STREAM)
                 .body(resource);
     }
 
