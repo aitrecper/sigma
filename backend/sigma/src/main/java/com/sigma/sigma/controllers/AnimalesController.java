@@ -58,25 +58,7 @@ public class AnimalesController {
         return animalesService.deleteById(id);
     }
 
-    //https://www.devglan.com/spring-boot/spring-boot-file-upload-download
-    @GetMapping("/pdf")
-    public ResponseEntity<ByteArrayResource> getAnimalesPdf() throws IOException {
-        AnimalesPdf animalesPdf = new AnimalesPdf();
-        File file = new File("src/generated/pdf/Motivation.pdf");
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
-        headers.add("Pragma", "no-cache");
-        headers.add("Expires", "0");
-        headers.add("Content-Disposition", "attachment; filename=test.pdf");
-        MediaType mediaType = MediaType.parseMediaType("application/pdf");
-        headers.setContentType(mediaType);
-        Path path = Paths.get(file.getAbsolutePath());
-        ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
 
-        return ResponseEntity.ok()
-                .headers(headers)
-                .contentLength(file.length())
-                .body(resource);
-    }
+
 
 }
