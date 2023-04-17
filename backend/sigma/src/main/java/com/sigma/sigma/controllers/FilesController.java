@@ -48,14 +48,14 @@ public class FilesController {
     @PostMapping("/upload/image/")
     public ResponseEntity uploadToLocalFileSystem(@RequestParam("file") MultipartFile file) {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-        Path path = Paths.get("/src/upload/images/" + fileName);
+        Path path = Paths.get("src/upload/images/" + fileName);
         try {
             Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             e.printStackTrace();
         }
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/src/upload/images/")
+                .path("src/upload/images/")
                 .path(fileName)
                 .toUriString();
         return ResponseEntity.ok(fileDownloadUri);
