@@ -26,7 +26,7 @@ DROP TABLE IF EXISTS `animales`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `animales` (
-  `ID` int NOT NULL,
+  `ID` int NOT NULL auto_increment,
   `IMAGEN` varchar(50) DEFAULT NULL,
   `JAULA` varchar(50) DEFAULT NULL,
   `NOMBRE` varchar(50) DEFAULT NULL,
@@ -77,7 +77,7 @@ CREATE TABLE `donaciones` (
   `CENTRO` bit(1) DEFAULT NULL,
   `FERIA` bit(1) DEFAULT NULL,
   `FECHA` date default null,
-  `ID` int DEFAULT NULL
+  `ID` int not NULL  auto_increment primary key
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -99,7 +99,7 @@ DROP TABLE IF EXISTS `facturas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `facturas` (
-  `NUM_FACTURA` int NOT NULL,
+  `NUM_FACTURA` int NOT NULL  auto_increment,
   `NUM_FACTURA_REAL` int DEFAULT NULL,
   `TIPOLOGIA` enum('GESTION','INCIDENCIA') DEFAULT NULL,
   `FICHERO` varchar(100) DEFAULT NULL,
@@ -108,9 +108,10 @@ CREATE TABLE `facturas` (
   `PAGADA` bit(1) DEFAULT NULL,
   `CHIP` int DEFAULT NULL,
   `JAULA` int DEFAULT NULL,
+  `FECHA` date default null,
   PRIMARY KEY (`NUM_FACTURA`),
-  KEY `CHIP_idx` (`CHIP`),
-  CONSTRAINT `CHIP` FOREIGN KEY (`CHIP`) REFERENCES `animales` (`ID`)
+  KEY `CHIP_idx` (`CHIP`)
+#  CONSTRAINT `CHIP` FOREIGN KEY (`CHIP`) REFERENCES `animales` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -131,7 +132,7 @@ DROP TABLE IF EXISTS `familias`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `familias` (
-  `ID_FAMILIA` int NOT NULL,
+  `ID_FAMILIA` int NOT NULL auto_increment,
   `NOMBRE` varchar(50) DEFAULT NULL,
   `APELLIDO_1` varchar(50) DEFAULT NULL,
   `APELLIDO_2` varchar(50) DEFAULT NULL,
@@ -189,7 +190,7 @@ DROP TABLE IF EXISTS `gestiones_urgencias`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `gestiones_urgencias` (
-  `ID` int DEFAULT NULL,
+  `ID` int DEFAULT NULL auto_increment,
   `NOMBRE` varchar(50) DEFAULT NULL,
   `CHIP` int DEFAULT NULL,
   `JAULA` int DEFAULT NULL,
@@ -222,7 +223,7 @@ CREATE TABLE `inventario` (
   `CADUCIDAD` date DEFAULT NULL,
   `PRIORIDAD_DE_USO` bit(1) DEFAULT NULL,
   `TIPO_ANIMAL` enum('PERRO','GATO') DEFAULT NULL,
-  `ID` int DEFAULT NULL
+  `ID` int DEFAULT NULL auto_increment
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -243,7 +244,7 @@ DROP TABLE IF EXISTS `trabajadores`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `trabajadores` (
-  `ID` bit(1) DEFAULT NULL,
+  `ID` int primary key DEFAULT NULL auto_increment,
   `NOMBRE` varchar(50) DEFAULT NULL,
   `APELLIDO_1` varchar(50) DEFAULT NULL,
   `APELLIDO_2` varchar(50) DEFAULT NULL,
@@ -275,7 +276,7 @@ DROP TABLE IF EXISTS `veterinario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `veterinario` (
-  `ID` int NOT NULL,
+  `ID` int NOT NULL auto_increment,
   `VETERINARIO` varchar(50) DEFAULT NULL,
   `PROFESIONAL` varchar(50) DEFAULT NULL,
   `DIRECCION` varchar(100) DEFAULT NULL,
@@ -301,7 +302,7 @@ DROP TABLE IF EXISTS `voluntarios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `voluntarios` (
-  `ID` int DEFAULT NULL,
+  `ID` int DEFAULT NULL auto_increment,
   `NOMBRE` varchar(50) DEFAULT NULL,
   `APELLIDO_1` varchar(50) DEFAULT NULL,
   `APELLIDO_2` varchar(50) DEFAULT NULL,
@@ -336,3 +337,5 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2023-04-13 18:12:44
+
+select * from facturas;
