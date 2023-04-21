@@ -126,7 +126,7 @@ public class FilesController {
     }
 
     @GetMapping("/download/{fileName:.+}")
-    public ResponseEntity downloadFileFromLocal(@PathVariable String fileName) {
+    public void downloadFileFromLocal(@PathVariable String fileName) {
         Path path = Paths.get("src/uploads/images/" + fileName);
         Resource resource = null;
         try {
@@ -134,10 +134,10 @@ public class FilesController {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType())
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
-                .body(resource);
+//        return ResponseEntity.ok()
+//                .contentType(MediaType.parseMediaType())
+//                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
+//                .body(resource);
     }
 
     @PostMapping("/multi-upload")
