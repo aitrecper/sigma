@@ -1,4 +1,4 @@
-package com.sigma.sigma.entities;
+package com.sigma.authorizationserver.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;

@@ -1,7 +1,7 @@
-package com.sigma.sigma.services;
+package com.sigma.authorizationserver.services;
 
-import com.sigma.sigma.entities.User;
-import com.sigma.sigma.repositories.UserRepository;
+import com.sigma.authorizationserver.entities.User;
+import com.sigma.authorizationserver.repositories.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

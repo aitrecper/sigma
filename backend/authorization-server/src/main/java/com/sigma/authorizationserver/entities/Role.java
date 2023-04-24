@@ -1,4 +1,4 @@
-package com.sigma.sigma.entities;
+package com.sigma.authorizationserver.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

@@ -1,4 +1,4 @@
-package com.sigma.sigma.config;
+package com.sigma.authorizationserver.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.oauth2.authserver.OAuth2AuthorizationServerConfiguration;

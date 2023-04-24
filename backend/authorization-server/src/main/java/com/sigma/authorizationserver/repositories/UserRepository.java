@@ -1,6 +1,6 @@
-package com.sigma.sigma.repositories;
+package com.sigma.authorizationserver.repositories;
 
-import com.sigma.sigma.entities.User;
+import com.sigma.authorizationserver.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
