@@ -1,7 +1,5 @@
 package com.sigma.sigma.controllers;
 
-import com.sigma.sigma.storage.StorageFileNotFoundException;
-import com.sigma.sigma.storage.StorageService;
 import com.sigma.sigma.util.AnimalesPdf;
 import jakarta.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,15 +32,10 @@ public class FilesController {
 
     //https://www.devglan.com/spring-boot/spring-boot-file-upload-download
 
-    private final StorageService storageService;
 
     @Autowired
     private ServletContext servletContext;
 
-    @Autowired
-    public FilesController(StorageService storageService) {
-        this.storageService = storageService;
-    }
 
     @GetMapping("/generateContract/{nombreAnimal}")
     public ResponseEntity<ByteArrayResource> generateContract() throws IOException {
@@ -62,26 +55,6 @@ public class FilesController {
                 .headers(headers)
                 .contentLength(file.length())
                 .body(resource);
-    }
-
-    @GetMapping("/files/{filename:.+}")
-    @ResponseBody
-    public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
-
-        Resource file = storageService.loadAsResource(filename);
-        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
-                "attachment; filename=\"" + file.getFilename() + "\"").body(file);
-    }
-
-    @PostMapping("/upload/image/")
-    public String handleFileUpload(@RequestParam("file") MultipartFile file,
-                                   RedirectAttributes redirectAttributes) {
-
-        storageService.store(file);
-        redirectAttributes.addFlashAttribute("message",
-                "You successfully uploaded " + file.getOriginalFilename() + "!");
-
-        return "redirect:/";
     }
 
     @PostMapping("/upload")
@@ -104,10 +77,6 @@ public class FilesController {
         }
     }
 
-    @ExceptionHandler(StorageFileNotFoundException.class)
-    public ResponseEntity<?> handleStorageFileNotFound(StorageFileNotFoundException exc) {
-        return ResponseEntity.notFound().build();
-    }
 
     @PostMapping("/uploads")
     public ResponseEntity uploadToLocalFileSystem(@RequestParam("file") MultipartFile file) {

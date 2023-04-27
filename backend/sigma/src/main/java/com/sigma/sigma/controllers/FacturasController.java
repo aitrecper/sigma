@@ -8,39 +8,39 @@ import com.sigma.sigma.services.FacturasService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/facturas/")
+@RequestMapping("/api")
 public class FacturasController {
 
     @Autowired
     private  FacturasService facturasService;
 
-    @GetMapping("")
+    @GetMapping("/facturas")
     public List<Facturas> getFacturas() {
         return facturasService.findAll();
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/facturas/{id}")
     public Facturas getFactura(@PathVariable Long id) {
         return facturasService.findById(id);
     }
 
-    @PostMapping("")
+    @PostMapping("/facturas/add")
     public Facturas addFactura(@RequestBody Facturas facturas) {
         return facturasService.save(facturas);
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/facturas/update/{id}")
     public Facturas updateFactura(@PathVariable Long id, @RequestBody Facturas facturas) {
         facturas.setNumFactura(id);
         return facturasService.save(facturas);
     }
 
-    @DeleteMapping("")
+    @DeleteMapping("/facturas/delete")
     public String deleteFacturas(@RequestBody Facturas facturas) {
         return facturasService.delete(facturas);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/facturas/delete/{id}")
     public String deleteFactura(@PathVariable Long id) {
         return facturasService.deleteById(id);
     }

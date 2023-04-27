@@ -1,6 +1,6 @@
 package com.sigma.sigma.entities;
 
-import com.sigma.sigma.TipoAnimal;
+import com.sigma.sigma.constants.TipoAnimal;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -33,7 +33,8 @@ public class Animales {
     private String raza;
 
     @Column(name = "tipo_animal")
-    private String tipoAnimal;
+    @Enumerated(EnumType.STRING)
+    private TipoAnimal tipoAnimal;
 
     @Column(name = "chip")
     private String chip;

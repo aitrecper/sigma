@@ -6,41 +6,44 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/familias/")
+@RequestMapping("/api")
 public class FamiliasController {
 
     @Autowired
     private FamiliasService familiasService;
 
-    @GetMapping("")
+    @GetMapping("/familias")
     public List<Familias> getAllFamilias(){
         return familiasService.findAll();
     }
 
-    @GetMapping("/{id}")
-    public Familias getFamiliasById(Long id){
+    @GetMapping("/familias/{id}")
+    public Optional<Familias> getFamiliasById(@PathVariable Long id){
         return familiasService.findById(id);
     }
 
-    @PostMapping("")
-    public Familias saveFamilias(Familias familias){
+    @PostMapping("/familias/add")
+    public Familias saveFamilias(@RequestBody Familias familias){
         return familiasService.save(familias);
     }
 
-    @PutMapping("/{id}")
-    public Familias updateFamilias(Familias familias, @PathVariable Long id){
+    @PutMapping("/familias/update/{id}")
+    public Familias updateFamilias(@RequestBody Familias familias, @PathVariable Long id){
+        System.out.println("id: " + id);
         familias.setIdFamilia(id);
+        System.out.println(familias);
         return familiasService.save(familias);
     }
 
-    @DeleteMapping("/{id}")
-    public String deleteFamilias(Long id){
+    @DeleteMapping("/familias/delete/{id}")
+    public String deleteFamilias(@PathVariable Long id){
         return familiasService.deleteById(id);
     }
 
-    @DeleteMapping("")
+    @DeleteMapping("/familias/delete")
     public String deleteAllFamilias(@RequestBody Familias familias){
         return familiasService.delete(familias);
     }

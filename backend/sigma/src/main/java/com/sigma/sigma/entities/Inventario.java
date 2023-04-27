@@ -1,6 +1,8 @@
 package com.sigma.sigma.entities;
 
-import com.sigma.sigma.TipoAnimal;
+import com.sigma.sigma.constants.EstadoProducto;
+import com.sigma.sigma.constants.Tipo;
+import com.sigma.sigma.constants.TipoAnimal;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -22,29 +24,29 @@ public class Inventario {
 
     @NotNull
     @Enumerated(EnumType.STRING)
+    @Column(name = "tipo")
     private Tipo tipo;
 
     @NotNull
     @Enumerated(EnumType.STRING)
+    @Column(name = "estado_producto")
     private EstadoProducto estadoProducto;
 
     @NotNull
+    @Column(name = "fecha_donacion")
     private Date fechaDonacion;
 
+    @Column(name = "caducidad")
     private Date caducidad;
 
+    @Column(name = "prioridad_de_uso")
     private Boolean prioridadDeUso;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "tipo_animal")
     private TipoAnimal tipoAnimal;
 
-    // constructores, getters y setters
 }
 
-enum Tipo {
-    COMIDA, MEDICAMENTO, MOBILIARIO, JUGUETES
-}
 
-enum EstadoProducto {
-    ABIERTO, CERRADO
-}
+

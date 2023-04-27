@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FamiliasService {
@@ -17,8 +18,8 @@ public class FamiliasService {
         return familiasRepository.findAll();
     }
 
-    public Familias findById(Long id){
-        return familiasRepository.findById(id).get();
+    public Optional<Familias> findById(Long id){
+        return familiasRepository.findById(id);
     }
 
     public Familias save(Familias familias){
@@ -36,6 +37,7 @@ public class FamiliasService {
     }
 
     public Familias update(Familias familias){
+        
         return familiasRepository.save(familias);
     }
 }

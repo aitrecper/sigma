@@ -1,6 +1,5 @@
 package com.sigma.sigma.entities;
 
-import com.sigma.sigma.Tipologia;
 import jakarta.persistence.*;
 import lombok.Data;
 

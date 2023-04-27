@@ -1,13 +1,11 @@
 package com.sigma.sigma.entities;
 
-import com.sigma.sigma.Genero;
-import com.sigma.sigma.TipoAnimal;
+import com.sigma.sigma.constants.Genero;
+import com.sigma.sigma.constants.TipoAnimal;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.sql.Date;
-import java.util.List;
-import java.util.Map;
 
 @Entity
 @Data
@@ -29,6 +27,7 @@ public class Familias {
     private String apellido2;
 
     @Column(name = "genero")
+    @Enumerated(EnumType.STRING)
     private Genero genero;
 
     @Column(name = "direccion")
@@ -79,16 +78,33 @@ public class Familias {
     @Column(name = "otros_animales")
     private boolean otrosAnimales;
 
-    // Aquí poner los enum(si/no) más adelante
+    @Column(name = "gatos")
+    private boolean gatos;
+
+    @Column(name = "perros")
+    private boolean perros;
+
+    @Column(name = "niños")
+    private boolean ninos;
+
+    @Column(name = "otro_esterilizado")
+    private boolean otroEsterilizado;
 
     @Column(name = "tipo_animal_busca")
+    @Enumerated(EnumType.STRING)
     private TipoAnimal tipoAnimalBusca;
+
+    @Column(name = "compromiso_esterilizacion")
+    private boolean compromisoEstirilizacion;
 
     @Column(name = "animales_con_dolencias")
     private String animalesConDolencias;
 
     @Column(name = "animal_interesado")
     private String animalInteresado;
+
+    @Column(name = "adopcion")
+    private boolean adopcion;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_animal")
@@ -100,5 +116,6 @@ public class Familias {
     @Column(name = "fecha_adopcion")
     private Date fechaAdopcion;
 
-
+    @Column(name = "esterilizado")
+    private boolean esterilizado;
 }

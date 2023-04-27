@@ -38,22 +38,22 @@ public class AnimalesController {
         return animalesService.findById(id);
     }
 
-    @PostMapping("/animales")
+    @PostMapping("/animales/add")
     public Animales addAnimales(@RequestBody Animales animales) {
         return animalesService.save(animales);
     }
 
-    @PutMapping("animales/{id}")
+    @PutMapping("animales/update/{id}")
     public Animales updateAnimales(@PathVariable Long id, @RequestBody Animales animales) {
         return animalesService.update(id, animales);
     }
 
-    @DeleteMapping("animales/")
+    @DeleteMapping("animales/delete")
     public String deleteAnimales( @RequestBody Animales animales) {
         return animalesService.delete(animales);
     }
 
-    @DeleteMapping("animales/{id}")
+    @DeleteMapping("animales/delete/{id}")
     public String deleteAnimalesById(@PathVariable Long id) {
         return animalesService.deleteById(id);
     }

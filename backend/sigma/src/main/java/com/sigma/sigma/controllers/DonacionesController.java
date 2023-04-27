@@ -8,39 +8,39 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/donaciones/")
+@RequestMapping("/api")
 public class DonacionesController {
 
     @Autowired
     private DonacionesService donacionesService;
 
-    @GetMapping
+    @GetMapping("/donaciones")
     public List<Donaciones> getDonaciones(){
         return donacionesService.findAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/donaciones/{id}")
     public Donaciones getDonacionesById(@PathVariable Long id){
         return donacionesService.findById(id);
     }
 
-    @PostMapping("/")
+    @PostMapping("/donaciones/add")
     public Donaciones createDonaciones(@RequestBody Donaciones donaciones){
         return donacionesService.save(donaciones);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/donaciones/update/{id}")
     public Donaciones updateDonaciones(@PathVariable Long id, @RequestBody Donaciones donaciones){
         donaciones.setId(id);
         return donacionesService.save(donaciones);
     }
 
-    @DeleteMapping("")
+    @DeleteMapping("/donaciones/delete")
     public String deleteDonaciones(@RequestBody Donaciones donaciones){
         return donacionesService.delete(donaciones);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/donaciones/delete/{id}")
     public String deleteDonacionesById(@PathVariable Long id){
         return donacionesService.deleteById(id);
     }
