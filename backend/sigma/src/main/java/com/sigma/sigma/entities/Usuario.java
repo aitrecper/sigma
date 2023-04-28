@@ -19,19 +19,8 @@ public class Usuario {
     @Column(name = "contrasena", nullable = false)
     private String contrasena;
 
-    @Column(name = "nombre", nullable = false)
-    private String nombre;
-
-    @Column(name = "apellidos", nullable = false)
-    private String apellidos;
-
-    @Column(name = "dni", nullable = false, unique = true)
-    private String dni;
-
     @Column(name = "mail", nullable = false, unique = true)
     private String mail;
 
-    @Column(name = "direccion", nullable = false)
-    private String direccion;
 
 }

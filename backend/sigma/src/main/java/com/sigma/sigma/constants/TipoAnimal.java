@@ -5,4 +5,5 @@ public enum TipoAnimal {
     Perro,
     Gato,
     Conejo,
+    Otros
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class InventarioService {
@@ -17,8 +18,8 @@ public class InventarioService {
         return inventarioRepository.findAll();
     }
 
-    public Inventario findById(Long id) {
-        return inventarioRepository.findById(id).get();
+    public Optional<Inventario> findById(Long id) {
+        return inventarioRepository.findById(id);
     }
 
     public Inventario save(Inventario inventario) {

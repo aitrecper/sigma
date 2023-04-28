@@ -1,10 +1,11 @@
-CREATE DATABASE  IF NOT EXISTS `sigma` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `sigma`;
 -- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
 --
--- Host: localhost    Database: sigma
+-- Host: localhost    Database: mydb
 -- ------------------------------------------------------
 -- Server version	8.0.32
+
+create database if not exists SIGMA;
+use sigma;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -25,7 +26,7 @@ DROP TABLE IF EXISTS `animales`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `animales` (
-  `ID` int NOT NULL AUTO_INCREMENT,
+  `ID` int NOT NULL auto_increment,
   `IMAGEN` varchar(50) DEFAULT NULL,
   `JAULA` varchar(50) DEFAULT NULL,
   `NOMBRE` varchar(50) DEFAULT NULL,
@@ -47,7 +48,7 @@ CREATE TABLE `animales` (
   `ESTERILIZADO` bit(1) DEFAULT NULL,
   `COMPARTIR_JAULA` bit(1) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -59,6 +60,16 @@ LOCK TABLES `animales` WRITE;
 INSERT INTO `animales` VALUES (1,NULL,'1','Dalia','Hembra',1,'American','Perro','1234','1234',_binary '',_binary '',_binary '',_binary '',_binary '\0','2022-02-01',_binary '','2022-03-01',_binary '',_binary '',_binary ''),(2,NULL,'1','Sirius Black','Macho',0.3,'Labrador','Perro','6789','6789',_binary '\0',_binary '\0',_binary '',_binary '',_binary '\0','2023-01-09',_binary '','2022-03-01',_binary '\0',_binary '\0',_binary '');
 /*!40000 ALTER TABLE `animales` ENABLE KEYS */;
 UNLOCK TABLES;
+
+drop table if exists contabilidad;
+CREATE TABLE Contabilidad(
+id int primary key auto_increment,
+FECHA date,
+CONCEPTO VARCHAR(50),
+DEBE float,
+HABER float,
+SALDO float);
+
 
 --
 -- Table structure for table `donaciones`
@@ -75,10 +86,9 @@ CREATE TABLE `donaciones` (
   `APELLIDO_2` varchar(50) DEFAULT NULL,
   `CENTRO` bit(1) DEFAULT NULL,
   `FERIA` bit(1) DEFAULT NULL,
-  `FECHA` date DEFAULT NULL,
-  `ID` int NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+  `FECHA` date default null,
+  `ID` int not NULL  auto_increment primary key
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87,6 +97,7 @@ CREATE TABLE `donaciones` (
 
 LOCK TABLES `donaciones` WRITE;
 /*!40000 ALTER TABLE `donaciones` DISABLE KEYS */;
+INSERT INTO `donaciones` VALUES (10,'Donacion','Alice','Casanova','Navarro',_binary '\0',_binary '\0',1);
 /*!40000 ALTER TABLE `donaciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -98,7 +109,7 @@ DROP TABLE IF EXISTS `facturas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `facturas` (
-  `NUM_FACTURA` int NOT NULL AUTO_INCREMENT,
+  `NUM_FACTURA` int NOT NULL  auto_increment,
   `NUM_FACTURA_REAL` int DEFAULT NULL,
   `TIPOLOGIA` enum('GESTION','INCIDENCIA') DEFAULT NULL,
   `FICHERO` varchar(100) DEFAULT NULL,
@@ -107,10 +118,11 @@ CREATE TABLE `facturas` (
   `PAGADA` bit(1) DEFAULT NULL,
   `CHIP` int DEFAULT NULL,
   `JAULA` int DEFAULT NULL,
-  `FECHA` date DEFAULT NULL,
+  `FECHA` date default null,
   PRIMARY KEY (`NUM_FACTURA`),
   KEY `CHIP_idx` (`CHIP`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+#  CONSTRAINT `CHIP` FOREIGN KEY (`CHIP`) REFERENCES `animales` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -119,17 +131,16 @@ CREATE TABLE `facturas` (
 
 LOCK TABLES `facturas` WRITE;
 /*!40000 ALTER TABLE `facturas` DISABLE KEYS */;
-INSERT INTO `facturas` VALUES (1,547,'GESTION',NULL,530,'Test',_binary '',6789,77,NULL);
 /*!40000 ALTER TABLE `facturas` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
 -- Table structure for table `familias`
 --
+
 DROP TABLE IF EXISTS `familias`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-
 CREATE TABLE `familias` (
   `ID_FAMILIA` int NOT NULL auto_increment,
   `NOMBRE` varchar(50) DEFAULT NULL,
@@ -172,6 +183,7 @@ CREATE TABLE `familias` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+select * from familias;
 --
 -- Dumping data for table `familias`
 --
@@ -189,7 +201,7 @@ DROP TABLE IF EXISTS `gestiones_urgencias`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `gestiones_urgencias` (
-  `ID` int DEFAULT NULL,
+  `ID` int auto_increment primary key,
   `NOMBRE` varchar(50) DEFAULT NULL,
   `CHIP` int DEFAULT NULL,
   `JAULA` int DEFAULT NULL,
@@ -215,14 +227,14 @@ DROP TABLE IF EXISTS `inventario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inventario` (
+  `ID` int auto_increment primary key,
   `PRODUCTO` varchar(150) DEFAULT NULL,
-  `TIPO` enum('COMIDA','MEDICAMENTO','MOBILIARIO','JUGUETES') DEFAULT NULL,
-  `ESTADO_PRODUCTO` enum('ABIERTO','CERRADO') DEFAULT NULL,
+  `TIPO` enum('COMIDA','MEDICAMENTO','MOBILIARIO','JUGUETES') not NULL,
+  `ESTADO_PRODUCTO` enum('ABIERTO','CERRADO') not NULL,
   `FECHA_DONACION` date DEFAULT NULL,
   `CADUCIDAD` date DEFAULT NULL,
   `PRIORIDAD_DE_USO` bit(1) DEFAULT NULL,
-  `TIPO_ANIMAL` enum('PERRO','GATO') DEFAULT NULL,
-  `ID` int DEFAULT NULL
+  `TIPO_ANIMAL` enum('Perro','Gato','Otros') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -235,6 +247,14 @@ LOCK TABLES `inventario` WRITE;
 /*!40000 ALTER TABLE `inventario` ENABLE KEYS */;
 UNLOCK TABLES;
 
+
+CREATE TABLE usuarios (
+  id INT PRIMARY KEY auto_increment,
+  usuario VARCHAR(50),
+  contrasena VARCHAR(50),
+  mail VARCHAR(50)
+  );
+
 --
 -- Table structure for table `trabajadores`
 --
@@ -242,20 +262,21 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `trabajadores`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `trabajadores` (
-  `ID` bit(1) DEFAULT NULL,
-  `NOMBRE` varchar(50) DEFAULT NULL,
-  `APELLIDO_1` varchar(50) DEFAULT NULL,
-  `APELLIDO_2` varchar(50) DEFAULT NULL,
-  `USUARIO` varchar(50) DEFAULT NULL,
-  `CONTRASEÑA` varchar(50) DEFAULT NULL,
-  `DNI` varchar(15) DEFAULT NULL,
-  `DIRECCION` varchar(50) DEFAULT NULL,
-  `POBLACION` varchar(50) DEFAULT NULL,
-  `PAIS` varchar(20) DEFAULT NULL,
-  `TELEFONO` bit(1) DEFAULT NULL,
-  `MAIL` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+create table Trabajadores(
+id int primary key auto_increment,
+Nombre VARCHAR(50),
+Apellido VARCHAR(50),
+Apellido2 VARCHAR(50),
+Telefono INT,
+dni varchar(9),
+Direccion VARCHAR(80),
+Horario VARCHAR(50),
+Horas_semana float,
+Salario float,
+id_usuario int,
+ foreign key (id_usuario) references usuarios(id)
+);
+
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -275,7 +296,7 @@ DROP TABLE IF EXISTS `veterinario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `veterinario` (
-  `ID` int NOT NULL,
+  `ID` int NOT NULL auto_increment,
   `VETERINARIO` varchar(50) DEFAULT NULL,
   `PROFESIONAL` varchar(50) DEFAULT NULL,
   `DIRECCION` varchar(100) DEFAULT NULL,
@@ -301,7 +322,7 @@ DROP TABLE IF EXISTS `voluntarios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `voluntarios` (
-  `ID` int DEFAULT NULL,
+  `ID` int DEFAULT NULL auto_increment,
   `NOMBRE` varchar(50) DEFAULT NULL,
   `APELLIDO_1` varchar(50) DEFAULT NULL,
   `APELLIDO_2` varchar(50) DEFAULT NULL,
@@ -335,4 +356,6 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-18 19:42:37
+-- Dump completed on 2023-04-13 18:12:44
+
+select * from facturas;

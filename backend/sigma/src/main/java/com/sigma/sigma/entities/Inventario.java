@@ -18,7 +18,6 @@ public class Inventario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotNull
     @Column(name = "producto")
     private String producto;
 
@@ -32,7 +31,6 @@ public class Inventario {
     @Column(name = "estado_producto")
     private EstadoProducto estadoProducto;
 
-    @NotNull
     @Column(name = "fecha_donacion")
     private Date fechaDonacion;
 

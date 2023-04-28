@@ -23,12 +23,13 @@ public class FamiliasService {
     }
 
     public Familias save(Familias familias){
+
         return familiasRepository.save(familias);
     }
 
     public String delete(Familias familias){
         familiasRepository.delete(familias);
-        return "Familia eliminada con exito";
+        return "Familia eliminada con éxito";
     }
 
     public String deleteById(Long id){
@@ -36,8 +37,4 @@ public class FamiliasService {
         return "Familia eliminada con exito";
     }
 
-    public Familias update(Familias familias){
-        
-        return familiasRepository.save(familias);
-    }
 }

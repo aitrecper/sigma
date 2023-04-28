@@ -6,41 +6,42 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/inventario/")
+@RequestMapping("/api")
 public class InventarioController {
 
     @Autowired
     private InventarioService inventarioService;
 
-    @GetMapping("")
+    @GetMapping("/inventario/")
     public List<Inventario> findAll(){
         return inventarioService.findAll();
     }
 
-    @GetMapping("/{id}")
-    public Inventario findById(Long id){
+    @GetMapping("/inventario/{id}")
+    public Optional<Inventario> findById(@PathVariable Long id){
         return inventarioService.findById(id);
     }
 
-    @PostMapping("")
+    @PostMapping("/inventario/add")
     public Inventario save(@RequestBody Inventario inventario){
         return inventarioService.save(inventario);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/inventario/update/{id}")
     public Inventario update(@PathVariable Long id, @RequestBody Inventario inventario){
         inventario.setId(id);
         return inventarioService.update( inventario);
     }
 
-    @DeleteMapping("")
+    @DeleteMapping("/inventario/delete")
     public String delete(@RequestBody Inventario inventario){
         return inventarioService.delete(inventario);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/inventario/delete/{id}")
     public String delete(@PathVariable Long id){
         return inventarioService.deleteById(id);
     }

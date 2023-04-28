@@ -25,8 +25,12 @@ public class UsuarioController {
         return usuarioService.findById(id);
     }
 
+    @GetMapping("/users/usuario/{usuario}")
+    public Usuario getUsuario(@PathVariable String usuario){
+        return usuarioService.findByUsuario(usuario);
+    }
 
-    @GetMapping("/users/{mail}")
+    @GetMapping("/users/mail/{mail}")
     public Usuario getUserEmail(@PathVariable String mail){
         return usuarioService.getUsuarioByMail(mail);
     }

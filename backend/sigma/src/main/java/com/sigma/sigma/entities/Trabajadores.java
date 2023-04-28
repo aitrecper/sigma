@@ -16,17 +16,11 @@ public class Trabajadores {
     @Column(name = "NOMBRE")
     private String nombre;
 
-    @Column(name = "APELLIDO_1")
-    private String apellido1;
+    @Column(name = "APELLIDO")
+    private String apellido;
 
-    @Column(name = "APELLIDO_2")
+    @Column(name = "APELLIDO2")
     private String apellido2;
-
-    @Column(name = "USUARIO")
-    private String usuario;
-
-    @Column(name = "CONTRASEÑA")
-    private String contrasena;
 
     @Column(name = "DNI")
     private String dni;
@@ -34,16 +28,20 @@ public class Trabajadores {
     @Column(name = "DIRECCION")
     private String direccion;
 
-    @Column(name = "POBLACION")
-    private String poblacion;
+    @Column(name = "horario")
+    private String horario;
 
-    @Column(name = "PAIS")
-    private String pais;
+    @Column(name = "horas_semana")
+    private double horasSemana;
 
     @Column(name = "TELEFONO")
-    private String telefono;
+    private int telefono;
 
-    @Column(name = "MAIL")
-    private String mail;
+    @Column(name = "salario")
+    private float salario;
+
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id")
+    private Usuario usuario;
 
 }

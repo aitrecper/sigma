@@ -1,7 +1,9 @@
 package com.sigma.sigma.services;
 
 import com.sigma.sigma.entities.Trabajadores;
+import com.sigma.sigma.entities.Usuario;
 import com.sigma.sigma.repositories.TrabajadoresRepository;
+import com.sigma.sigma.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,9 @@ public class TrabajadoresService {
     @Autowired
     private TrabajadoresRepository trabajadoresRepository;
 
+    @Autowired
+    private UsuarioRepository usuariosRepository;
+
     public List<Trabajadores> findAll() {
         return trabajadoresRepository.findAll();
     }
@@ -22,6 +27,8 @@ public class TrabajadoresService {
     }
 
     public Trabajadores save(Trabajadores trabajadores) {
+        Usuario usuario = usuariosRepository.findById(Long.valueOf(trabajadores.getUsuario().getId())).get();
+        trabajadores.setUsuario(usuario);
         return trabajadoresRepository.save(trabajadores);
     }
 
