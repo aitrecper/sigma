@@ -1,5 +1,9 @@
 package com.sigma.sigma.controllers;
 
+import com.sigma.sigma.entities.Animales;
+import com.sigma.sigma.entities.Familias;
+import com.sigma.sigma.services.AnimalesService;
+import com.sigma.sigma.services.FamiliasService;
 import com.sigma.sigma.util.AnimalesPdf;
 import jakarta.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,11 +40,30 @@ public class FilesController {
     @Autowired
     private ServletContext servletContext;
 
+    @Autowired
+    FamiliasService familiasService;
 
-    @GetMapping("/generateContract/{nombreAnimal}")
-    public ResponseEntity<ByteArrayResource> generateContract() throws IOException {
+    @Autowired
+    AnimalesService animalesService;
+
+
+    @GetMapping("/generateContract/{idFamilia}/{idAnimal}")
+    public ResponseEntity<ByteArrayResource> generateContract(@PathVariable Long idFamilia, @PathVariable Long idAnimal) throws IOException {
+
         AnimalesPdf animalesPdf = new AnimalesPdf();
-        File file = new File("src/generated/pdf/Motivation.pdf");
+
+        Familias familia = familiasService.findById(idFamilia).get();
+        System.out.println(familia);
+        Animales animal = animalesService.findById(idAnimal);
+        System.out.println(animal);
+
+        animalesPdf.setFamilia(familia);
+        animalesPdf.setAnimal(animal);
+
+
+        String filename = "Contrato_" + familia.getNombre() + "_" + familia.getApellido1() + "-" + animal.getNombre();
+
+        File file = new File("src/generated/pdf/"+filename+".pdf");
         HttpHeaders headers = new HttpHeaders();
         headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
         headers.add("Pragma", "no-cache");
