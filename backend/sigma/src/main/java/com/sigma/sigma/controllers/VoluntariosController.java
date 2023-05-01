@@ -8,41 +8,41 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/voluntarios/")
+@RequestMapping("/api")
 public class VoluntariosController {
 
     @Autowired
     private VoluntariosService voluntariosRepository;
 
-    @GetMapping
+    @GetMapping("/voluntarios")
     public List<Voluntarios> findAll(){
         return voluntariosRepository.findAll();
     }
 
-    @GetMapping("{id}")
-    public Voluntarios findById(Long id){
+    @GetMapping("/voluntarios/{id}")
+    public Voluntarios findById(@PathVariable Long id){
         return voluntariosRepository.findById(id);
     }
 
-    @PostMapping
+    @PostMapping("/voluntarios/add")
     public Voluntarios save(@RequestBody Voluntarios voluntarios){
         return voluntariosRepository.save(voluntarios);
     }
 
 
-    @PutMapping("{id}")
+    @PutMapping("/voluntarios/update/{id}")
     public Voluntarios update(@RequestBody Voluntarios voluntarios, @PathVariable Long id){
         voluntarios.setId(id);
         return voluntariosRepository.save(voluntarios);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/voluntarios/delete")
     public void delete(@RequestBody Voluntarios voluntarios){
         voluntariosRepository.delete(voluntarios);
     }
 
-    @DeleteMapping("{id}")
-    public void delete(@PathVariable Long id){
-        voluntariosRepository.deleteById(id);
+    @DeleteMapping("/voluntarios/delete/{id}")
+    public String delete(@PathVariable Long id){
+        return voluntariosRepository.deleteById(id);
     }
 }

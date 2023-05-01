@@ -1,7 +1,14 @@
 package com.sigma.sigma.entities;
 
+import com.sigma.sigma.constants.AccionRealizar;
+import com.sigma.sigma.constants.HorarioDisponible;
+import com.sigma.sigma.util.DiasDisponibles;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.Type;
+
+import java.util.Map;
+import java.util.Objects;
 
 @Entity
 @Data
@@ -15,10 +22,10 @@ public class Voluntarios {
     @Column(name = "nombre")
     private String nombre;
 
-    @Column(name = "apellido1")
+    @Column(name = "apellido_1")
     private String apellido1;
 
-    @Column(name = "apellido2")
+    @Column(name = "apellido_2")
     private String apellido2;
 
     @Column(name = "dni")
@@ -30,42 +37,28 @@ public class Voluntarios {
     @Column(name = "telefono")
     private Integer telefono;
 
+//    @Column(name = "dias_disponibles")
+//    @Enumerated(EnumType.STRING)
+//    private DiasDisponibles diasDisponibles;
+
     @Column(name = "dias_disponibles")
-    private DiasDisponibles diasDisponibles;
+    private String diasDisponibles;
 
     @Column(name = "horario_disponible")
-    private HorarioDisponible horarioDisponible;
+    @Enumerated(EnumType.STRING)
+    private HorarioDisponible horarioDisponibles;
 
     @Column(name = "edad")
     private Integer edad;
 
     @Column(name = "donacion")
     private Float donacion;
+
+    @Column(name = "cuenta_bancaria")
     private String cuentaBancaria;
+
+    @Column(name = "accion_a_realizar")
+    @Enumerated(EnumType.STRING)
     private AccionRealizar accionRealizar;
-
-    public enum DiasDisponibles {
-        LUNES,
-        MARTES,
-        MIERCOLES,
-        JUEVES,
-        VIERNES,
-        SABADO,
-        DOMINGO,
-        ENTRE_SEMANA,
-        FIN_DE_SEMANA
-    }
-
-    public enum HorarioDisponible {
-        MAÑANA,
-        MEDIO_DIA,
-        TARDE
-    }
-
-    public enum AccionRealizar {
-        LIMPIEZA,
-        COMIDA,
-        PASEO
-    }
 
 }

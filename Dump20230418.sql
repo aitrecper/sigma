@@ -297,8 +297,8 @@ DROP TABLE IF EXISTS `veterinario`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `veterinario` (
   `ID` int NOT NULL auto_increment,
-  `VETERINARIO` varchar(50) DEFAULT NULL,
-  `PROFESIONAL` varchar(50) DEFAULT NULL,
+  `nombre` varchar(100) DEFAULT NULL,
+  `clinica` varchar(100) DEFAULT "Propio",
   `DIRECCION` varchar(100) DEFAULT NULL,
   `CIF` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`ID`)
@@ -322,14 +322,15 @@ DROP TABLE IF EXISTS `voluntarios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `voluntarios` (
-  `ID` int DEFAULT NULL auto_increment,
+  `ID` int not NULL auto_increment primary key,
   `NOMBRE` varchar(50) DEFAULT NULL,
   `APELLIDO_1` varchar(50) DEFAULT NULL,
   `APELLIDO_2` varchar(50) DEFAULT NULL,
   `DNI` varchar(10) DEFAULT NULL,
   `MAIL` varchar(50) DEFAULT NULL,
   `TELEFONO` int DEFAULT NULL,
-  `DIAS_DISPONIBLES` enum('LUNES','MARTES','MIERCOLES','JUEVES','VIERNES','SABADO','DOMINGO','ENTRE SEMANA','FIN DE SEMANA') DEFAULT NULL,
+  #`DIAS_DISPONIBLES` enum('LUNES','MARTES','MIERCOLES','JUEVES','VIERNES','SABADO','DOMINGO','ENTRE_SEMANA','FIN_DE_SEMANA') DEFAULT NULL,
+  `DIAS_DISPONIBLES` varchar(255),
   `HORARIO_DISPONIBLE` enum('MAÑANA','MEDIODIA','TARDE') DEFAULT NULL,
   `EDAD` int DEFAULT NULL,
   `DONACION` float DEFAULT NULL,

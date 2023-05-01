@@ -12,11 +12,11 @@ public class Veterinario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "veterinario")
-    private String veterinario;
+    @Column(name = "nombre")
+    private String nombre;
 
-    @Column(name = "profesional")
-    private String profesional;
+    @Column(name = "clinica")
+    private String clinica;
 
     @Column(name = "direccion")
     private String direccion;
