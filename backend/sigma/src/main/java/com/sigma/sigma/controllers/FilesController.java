@@ -2,8 +2,10 @@ package com.sigma.sigma.controllers;
 
 import com.sigma.sigma.entities.Animales;
 import com.sigma.sigma.entities.Familias;
+import com.sigma.sigma.entities.Trabajadores;
 import com.sigma.sigma.services.AnimalesService;
 import com.sigma.sigma.services.FamiliasService;
+import com.sigma.sigma.services.TrabajadoresService;
 import com.sigma.sigma.util.AnimalesPdf;
 import jakarta.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,29 +48,34 @@ public class FilesController {
     @Autowired
     AnimalesService animalesService;
 
+    @Autowired
+    TrabajadoresService trabajadoresService;
 
-    @GetMapping("/generateContract/{idFamilia}/{idAnimal}")
-    public ResponseEntity<ByteArrayResource> generateContract(@PathVariable Long idFamilia, @PathVariable Long idAnimal) throws IOException {
 
-        AnimalesPdf animalesPdf = new AnimalesPdf();
+    @GetMapping("/generateContract/{idFamilia}/{idAnimal}/{idTrabajador}")
+    public ResponseEntity<ByteArrayResource> generateContract(@PathVariable Long idFamilia, @PathVariable Long idAnimal, @PathVariable Long idTrabajador) throws IOException {
+
+
 
         Familias familia = familiasService.findById(idFamilia).get();
         System.out.println(familia);
         Animales animal = animalesService.findById(idAnimal);
         System.out.println(animal);
+        Trabajadores trabajador = trabajadoresService.findById(idTrabajador);
 
-        animalesPdf.setFamilia(familia);
-        animalesPdf.setAnimal(animal);
+        AnimalesPdf animalesPdf = new AnimalesPdf(familia, animal, trabajador);
+        animalesPdf.generatePDF();
 
 
         String filename = "Contrato_" + familia.getNombre() + "_" + familia.getApellido1() + "-" + animal.getNombre();
+//        String filename = "test";
 
         File file = new File("src/generated/pdf/"+filename+".pdf");
         HttpHeaders headers = new HttpHeaders();
         headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
         headers.add("Pragma", "no-cache");
         headers.add("Expires", "0");
-        headers.add("Content-Disposition", "attachment; filename=test.pdf");
+        headers.add("Content-Disposition", "attachment; filename=" + filename + ".pdf");
         MediaType mediaType = MediaType.parseMediaType("application/pdf");
         headers.setContentType(mediaType);
         Path path = Paths.get(file.getAbsolutePath());

@@ -40,6 +40,9 @@ public class Trabajadores {
     @Column(name = "salario")
     private float salario;
 
+    @Column(name = "edad")
+    private int edad;
+
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_usuario", referencedColumnName = "id")
     private Usuario usuario;
