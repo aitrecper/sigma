@@ -40,7 +40,7 @@ public class AnimalesPdf
             doc.open();
             //adds paragraph to the PDF file
             Paragraph titulo1 = functions.setTitle1();
-            doc.add;
+            //doc.add;
             doc.add(Chunk.NEWLINE);
             doc.add(Chunk.NEWLINE);
             Paragraph titulo2 = new Paragraph("COMPARECIENDO");

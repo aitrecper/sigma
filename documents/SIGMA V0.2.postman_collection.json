@@ -1,0 +1,1260 @@
+{
+	"info": {
+		"_postman_id": "5765dc3a-0669-43df-b629-e881b73d8e52",
+		"name": "SIGMA V0.2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26392419"
+	},
+	"item": [
+		{
+			"name": "Animales",
+			"item": [
+				{
+					"name": "GET ALL ANIMALES",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/animales",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"animales"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ANIMALES BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/animales/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"animales",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ADOPTABLES",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/animales/adopcion/13",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"animales",
+								"adopcion",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD ANIMALES",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\" : \"Test doggo\",\r\n    \"edad\" : 3,\r\n    \"genero\" : \"masculino\",\r\n    \"imagen\" : \"\",\r\n    \"jaula\" : \"NO\",\r\n    \"raza\" : \"A good boy\",\r\n    \"tipoAnimal\" : \"Perro\",\r\n    \"chip\" : \"123456789\",\r\n    \"pasaporte\" : \"49\",\r\n    \"salud\" : true,\r\n    \"historialVete\" : true,\r\n    \"gato\" : false,\r\n    \"perro\" : false,\r\n    \"niño\" : false,\r\n    \"fecha_llegada\" : null,\r\n    \"ppp\" : false,\r\n    \"esterilizado\" : true,\r\n    \"compartir_jaula\" : true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/animales/add",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"animales",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE ANIMALES BY ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\" : \"Test doggo\",\r\n    \"edad\" : 3,\r\n    \"genero\" : \"masculino\",\r\n    \"imagen\" : \"\",\r\n    \"jaula\" : \"NO\",\r\n    \"raza\" : \"A good boy\",\r\n    \"tipoAnimal\" : \"Perro\",\r\n    \"chip\" : \"123456789\",\r\n    \"pasaporte\" : \"49\",\r\n    \"salud\" : true,\r\n    \"historialVete\" : true,\r\n    \"gato\" : false,\r\n    \"perro\" : false,\r\n    \"niño\" : false,\r\n    \"fecha_llegada\" : null,\r\n    \"ppp\" : false,\r\n    \"esterilizado\" : true,\r\n    \"compartir_jaula\" : true\r\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/animales/update/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"animales",
+								"update",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE ANIMALES BY ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/animales/delete/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"animales",
+								"delete",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Donaciones",
+			"item": [
+				{
+					"name": "GET ALL DONACIONES",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/donaciones",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"donaciones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET DONACIONES BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/donaciones/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"donaciones",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD DONACIONES",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\" : \"Persona\",\r\n    \"apellido1\" : \"Amable\",\r\n    \"apellido2\" : \"1\",\r\n    \"importe\" : 500,\r\n    \"fecha\" : null,\r\n    \"concepto\" : \"Porque es una buena persona\",\r\n    \"centro\" : true,\r\n    \"feria\" : false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/donaciones/add",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"donaciones",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE DONACIONES BY ID",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\" : \"Persona\",\r\n    \"apellido1\" : \"Amable\",\r\n    \"apellido2\" : \"1\",\r\n    \"importe\" : 500,\r\n    \"fecha\" : null,\r\n    \"concepto\" : \"Porque es una buena persona de verdad\",\r\n    \"centro\" : true,\r\n    \"feria\" : false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/donaciones/update/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"donaciones",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE A REQUEST BY ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/donaciones/delete/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"donaciones",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Facturas",
+			"item": [
+				{
+					"name": "GET ALL FACTURAS",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "GET FACTURAS BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/facturas/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"facturas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD FACTURAS",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numFacturaReal\" : 547,\r\n    \"tipologia\" : \"Gestión\",\r\n    \"fichero\" : null,\r\n    \"importe\" : 500,\r\n    \"fecha\" : null,\r\n    \"concepto\" : \"Test\",\r\n    \"pagada\" : true,\r\n    \"chip\" : \"6789\",\r\n    \"jaula\" : 77\r\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/facturas/add",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"facturas",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE FACTURAS BY ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numFacturaReal\" : 547,\r\n    \"tipologia\" : \"Gestión\",\r\n    \"fichero\" : null,\r\n    \"importe\" : 530,\r\n    \"fecha\" : null,\r\n    \"concepto\" : \"Test\",\r\n    \"pagada\" : true,\r\n    \"chip\" : \"6789\",\r\n    \"jaula\" : 77\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/facturas/update/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"facturas",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELTE FACTURAS BY ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/facturas/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"facturas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Familias",
+			"item": [
+				{
+					"name": "GET ALL FAMILIAS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/familias",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"familias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET FAMILIAS BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/familias/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"familias",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD FAMILIA",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\" : \"Aitor\",\r\n    \"apellido1\" : \"Recio\",\r\n    \"apellido2\" : \"Pérez\",\r\n    \"genero\" : \"Masculino\",\r\n    \"direccion\" : \"Calle Falsa 123\",\r\n    \"poblacion\" : \"País de la piruleta\",\r\n    \"telefono\" : \"123456798\",\r\n    \"dni\" : \"78965412A\",\r\n    \"mail\" : \"mail@example.com\",\r\n    \"tipoVivienda\" : \"Piso\",\r\n    \"tamaño\" : \"60m2\",\r\n    \"terraza\" : false,\r\n    \"balcon\" : false,\r\n    \"jardin\" : false,\r\n    \"edad_miembros_familia\" : \"33:33:33\",\r\n    \"alergias\" : \"Ninguna\",\r\n    \"horas_solo\" : 3,\r\n    \"accesoExterior\" : false,\r\n    \"otrosAnimales\" : true,\r\n    \"gatos\" : true,\r\n    \"perros\" : false,\r\n    \"ninos\" : false,\r\n    \"otroEsterilizado\" : true,\r\n    \"animalesAnteriormente\" : true,\r\n    \"tipoAnimalBusca\" : \"Perro\",\r\n    \"compromisoEsterilizion\" : true,\r\n    \"animalesConDolencias\" : \"No\",\r\n    \"animalInteresado\" : \"Uno\",\r\n    \"adopcion\" : null,\r\n    \"idAnimal\" : null,\r\n    \"nombreAdoptado\" : null,\r\n    \"fechaAdopcion\" : null,\r\n    \"esterilizado\" : null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/familias/add",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"familias",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE FAMILIA",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\" : \"Aitor\",\r\n    \"apellido1\" : \"Recio\",\r\n    \"apellido2\" : \"Pérez\",\r\n    \"genero\" : \"Masculino\",\r\n    \"direccion\" : \"Calle falsilla 789\",\r\n    \"poblacion\" : \"País de la piruleta\",\r\n    \"telefono\" : \"123456798\",\r\n    \"dni\" : \"78965412A\",\r\n    \"mail\" : \"mail@example.com\",\r\n    \"tipoVivienda\" : \"Piso\",\r\n    \"tamaño\" : \"60m2\",\r\n    \"terraza\" : false,\r\n    \"balcon\" : false,\r\n    \"jardin\" : false,\r\n    \"edad_miembros_familia\" : \"33:33:33\",\r\n    \"alergias\" : \"Ninguna\",\r\n    \"horas_solo\" : 3,\r\n    \"accesoExterior\" : false,\r\n    \"otrosAnimales\" : true,\r\n    \"gatos\" : true,\r\n    \"perros\" : false,\r\n    \"ninos\" : false,\r\n    \"otroEsterilizado\" : true,\r\n    \"animalesAnteriormente\" : true,\r\n    \"tipoAnimalBusca\" : \"Perro\",\r\n    \"compromisoEsterilizion\" : true,\r\n    \"animalesConDolencias\" : \"No\",\r\n    \"animalInteresado\" : \"Uno\",\r\n    \"adopcion\" : null,\r\n    \"idAnimal\" : null,\r\n    \"nombreAdoptado\" : null,\r\n    \"fechaAdopcion\" : null,\r\n    \"esterilizado\" : null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/familias/update/11",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"familias",
+								"update",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE FAMILIAS BY ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/familias/delete/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"familias",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Gestiones-Urgencias",
+			"item": [
+				{
+					"name": "GET ALL GESTIONES-URGENCIAS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/gestiones/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"gestiones",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET GESTIONES-URGENCIAS BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/gestiones/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"gestiones",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD GESTIONES-URGENCIAS",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\" : \"gestión gestionada\",\r\n    \"chip\" : 14,\r\n    \"jaula\" : 33,\r\n    \"diagnostico\" : \"No gana\",\r\n    \"urgencia\" : false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/gestiones/add",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"gestiones",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE GESTIONES-URGENCIAS BY ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\" : \"gestión gestionada\",\r\n    \"chip\" : 14,\r\n    \"jaula\" : 33,\r\n    \"diagnostico\" : \"No gana\",\r\n    \"urgencia\" : true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/gestiones/update/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"gestiones",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE GESTIONES-URGENCIAS BY ID Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/gestiones/delete/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"gestiones",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Inventario",
+			"item": [
+				{
+					"name": "GET ALL INVENTARIO",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/inventario/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"inventario",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET INVENTARIO BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/inventario/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"inventario",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL INVENTARIO Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"producto\" : \"Saco de pienso\",\r\n    \"tipo\" : \"COMIDA\",\r\n    \"estadoProducto\" : \"CERRADO\",\r\n    \"fechaDonacion\" : null,\r\n    \"caducidad\" : \"2024-04-28\",\r\n    \"prioridadDeUso\" : false,\r\n    \"tipoAnimal\" : \"Otros\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/inventario/add",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"inventario",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE INVENTARIO BY ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"producto\" : \"Saco de pienso\",\r\n    \"tipo\" : \"COMIDA\",\r\n    \"estadoProducto\" : \"ABIERTO\",\r\n    \"fechaDonacion\" : null,\r\n    \"caducidad\" : \"2024-04-28\",\r\n    \"prioridadDeUso\" : false,\r\n    \"tipoAnimal\" : \"Otros\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/inventario/update/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"inventario",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE INVENTARIO BY ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/inventario/delete/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"inventario",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "GET ALL USUARIOS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/users",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET USUARIO BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/users/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET USUARIOS BY USUARIO",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/users/usuario/aitor",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"usuario",
+								"aitor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET USUARIOS BY MAIL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/users/mail/mail@example.com",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"mail",
+								"mail@example.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD USUARIOS",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usuario\" : \"aitor\",\r\n    \"contrasena\" : \"contrasena\",\r\n    \"mail\" : \"mail@example.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/users/add",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE USUARIOS BY ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usuario\" : \"aitor\",\r\n    \"contrasena\" : \"contrasenamassegura\",\r\n    \"mail\" : \"mail@example.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/users/update/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE USUARIOS BY ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usuario\" : \"aitor\",\r\n    \"contrasena\" : \"contrasenamassegura\",\r\n    \"mail\" : \"mail@example.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/users/delete/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Trabajadores",
+			"item": [
+				{
+					"name": "GET ALL TRABAJADORES",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/trabajadores/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"trabajadores",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET TRABAJADORES BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/trabajadores/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"trabajadores",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD TRABAJADORES",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\" : \"Aitor\",\r\n    \"apellido\" : \"Recio\",\r\n    \"apellido2\" : \"Perez\",\r\n    \"dni\" : \"12345678A\",\r\n    \"direccion\" : \"Calle falsa 123\",\r\n    \"horario\" : \"8 a 17\",\r\n    \"horasSemana\" : 40.0,\r\n    \"telefono\" : 123465789,\r\n    \"salario\" : 1000.50,\r\n    \"usuario\" : {\r\n        \"id\": 2\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/trabajadores/add",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"trabajadores",
+								"add"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Veterinario",
+			"item": [
+				{
+					"name": "GET ALL VETERNIARIOS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/veterinario",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"veterinario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET VETERINARIO BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/veterinario/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"veterinario",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD VETERINARIO",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\" : \"Fulanito de Tal\",\r\n    \"direccion\" : \"Calle falsa 123\",\r\n    \"cif\" : \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/veterinario/add",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"veterinario",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE VETERINARIO",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\" : \"Fulanito de Tal\",\r\n    \"direccion\" : \"Calle falsa 123\",\r\n    \"clinica\" : \"Propia\",\r\n    \"cif\" : \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/veterinario/update/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"veterinario",
+								"update",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Voluntarios",
+			"item": [
+				{
+					"name": "GET ALL VOLUNTARIOS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/voluntarios",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"voluntarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET VOLUNTARIOS BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/voluntarios/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"voluntarios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD VOLUNTARIOS",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\" : \"Aitor\",\r\n    \"apellido1\" : \"Recio\",\r\n    \"apellido2\" : \"Pérez\",\r\n    \"dni\" : \"12345678A\",\r\n    \"mail\" : \"mail@example.com\",\r\n    \"telefono\" : 698745123,\r\n    \"diasDisponibles\" : \"LUNES:MARTES:JUEVES\",\r\n    \"horarioDisponible\" : \"MAÑANA\",\r\n    \"edad\" : 28,\r\n    \"donacion\" : null,\r\n    \"cuantaBancaria\" : \"132465798\",\r\n    \"accionRealizar\" : \"PASEO\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/voluntarios/add",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"voluntarios",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE VOLUNTARIO BY ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\" : \"Aitor\",\r\n    \"apellido1\" : \"Recio\",\r\n    \"apellido2\" : \"Pérez\",\r\n    \"dni\" : \"12345678A\",\r\n    \"mail\" : \"mail@example.com\",\r\n    \"telefono\" : 698745123,\r\n    \"diasDisponibles\" : \"LUNES:MARTES:JUEVES\",\r\n    \"horarioDisponible\" : \"MAÑANA\",\r\n    \"edad\" : 28,\r\n    \"donacion\" : null,\r\n    \"cuantaBancaria\" : \"132465798\",\r\n    \"accionRealizar\" : \"PASEO\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/voluntarios/update/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"voluntarios",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE VOLUNTARIOS",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/voluntarios/delete/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"voluntarios",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
