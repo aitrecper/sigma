@@ -1,9 +1,11 @@
 package com.sigma.sigma.controllers;
 
 import com.sigma.sigma.entities.Animales;
+import com.sigma.sigma.entities.Facturas;
 import com.sigma.sigma.entities.Familias;
 import com.sigma.sigma.entities.Trabajadores;
 import com.sigma.sigma.services.AnimalesService;
+import com.sigma.sigma.services.FacturasService;
 import com.sigma.sigma.services.FamiliasService;
 import com.sigma.sigma.services.TrabajadoresService;
 import com.sigma.sigma.util.AnimalesPdf;
@@ -51,6 +53,9 @@ public class FilesController {
     @Autowired
     TrabajadoresService trabajadoresService;
 
+    @Autowired
+    private FacturasService facturasService;
+
 
     @GetMapping("/generateContract/{idFamilia}/{idAnimal}/{idTrabajador}")
     public ResponseEntity<ByteArrayResource> generateContract(@PathVariable Long idFamilia, @PathVariable Long idAnimal, @PathVariable Long idTrabajador) throws IOException {
@@ -63,7 +68,17 @@ public class FilesController {
         System.out.println(animal);
         Trabajadores trabajador = trabajadoresService.findById(idTrabajador);
 
-        AnimalesPdf animalesPdf = new AnimalesPdf(familia, animal, trabajador);
+        Double costesVeterinarios = 0.0;
+
+        List<Facturas> facturas = facturasService.findAll();
+
+        for(Facturas factura : facturas){
+            if(animal.getChip().equals(factura.getChip())){
+                costesVeterinarios+=factura.getImporte();
+            }
+        }
+
+        AnimalesPdf animalesPdf = new AnimalesPdf(familia, animal, trabajador, costesVeterinarios);
         animalesPdf.generatePDF();
 
 

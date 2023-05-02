@@ -2,6 +2,7 @@ package com.sigma.sigma.util;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.util.Date;
 
 
 import com.itextpdf.kernel.pdf.PdfDocument;
@@ -26,6 +27,8 @@ public class AnimalesPdf
     private Familias familia;
     private Animales animal;
     private Trabajadores trabajador;
+
+    private Double costeVeterinario;
 
     public void generatePDF(){
         {
@@ -74,7 +77,8 @@ public class AnimalesPdf
                 Paragraph table = functions.setTable(animal);
                 document.add(table);
 
-                Paragraph p5 = functions.setParagraph5();
+                Paragraph p5 = functions.setParagraph5(costeVeterinario, familia, trabajador);
+                document.add(p5);
 
                 //close the PDF file
                 doc.close();
@@ -160,7 +164,7 @@ class Functions {
         return paragraph;
     }
 
-    public Paragraph setParagraph5() {
+    public Paragraph setParagraph5(Double costeVeterinarios, Familias familia, Trabajadores trabajador) {
 
         Paragraph paragraph = new Paragraph();
         Text paragraphText1 = new Text(
@@ -214,8 +218,44 @@ class Functions {
                     "11º Las obligaciones anteriormente descritas, tendrán el carácter de condición resolutoria; es\n" +
                     "decir, el incumplimiento de cualquiera de ellas, producirá de pleno de derecho la resolución\n" +
                     "del contrato, recuperando la Asociación de forma inmediata la propiedad y posesión del\n" +
-                    "animal. "
+                    "animal. \n" +
+                    "12º El adoptante dona a la asociación como aportación a los gastos veterinarios del animal la " +
+                    "cantidad de " + costeVeterinarios + " €.\n" +
+                    "13º Las partes declaran comprender las estipulaciones del presente contrato compuesto por " +
+                    "dos folios a una cara, y en prueba de conformidad lo firman en el lugar y fecha abajo " +
+                    "indicados.\n\n"
         );
+
+        long millis=System.currentTimeMillis();
+
+        // creating a new object of the class Date
+        java.sql.Date date = new java.sql.Date(millis);
+
+        String dateString[] = date.toString().split("-");
+
+        Text paragraphText9 = new Text(
+          "EN BARCELONA, A " + dateString[2] + " DE " + dateString[1] + " DE " + dateString[0]
+        ).setItalic();
+
+        paragraphText9.setTextAlignment(TextAlignment.CENTER);
+
+        Text paragraphText10 = new Text(
+            "\n\n\tFirma adoptante:\t\t\t\t\t\t\tFirma Asociación: \n\n"
+        );
+
+        Text paragraphText11 = new Text(familia.getNombre() + " " + familia.getApellido1() + " " + familia.getApellido2() + "\t\t\t\t\t\t\t" + trabajador.getNombre() + " " + trabajador.getApellido() + " " + trabajador.getApellido2());
+
+        paragraph.add(paragraphText1);
+        paragraph.add(paragraphText2);
+        paragraph.add(paragraphText3);
+        paragraph.add(paragraphText4);
+        paragraph.add(paragraphText5);
+        paragraph.add(paragraphText6);
+        paragraph.add(paragraphText7);
+        paragraph.add(paragraphText8);
+        paragraph.add(paragraphText9);
+        paragraph.add(paragraphText10);
+        paragraph.add(paragraphText11);
 
         return paragraph;
     }

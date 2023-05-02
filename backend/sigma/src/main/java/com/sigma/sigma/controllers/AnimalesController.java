@@ -1,8 +1,10 @@
 package com.sigma.sigma.controllers;
 
 import com.sigma.sigma.entities.Animales;
+import com.sigma.sigma.entities.Facturas;
 import com.sigma.sigma.entities.Familias;
 import com.sigma.sigma.services.AnimalesService;
+import com.sigma.sigma.services.FacturasService;
 import com.sigma.sigma.services.FamiliasService;
 import com.sigma.sigma.util.AnimalesPdf;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,7 @@ public class AnimalesController {
 
     @Autowired
     private FamiliasService familiasService;
+
 
     @GetMapping("/animales")
     public List<Animales> getAnimales() {
