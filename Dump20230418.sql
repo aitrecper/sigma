@@ -33,8 +33,8 @@ CREATE TABLE `animales` (
   `GENERO` varchar(10) DEFAULT NULL,
   `EDAD` float DEFAULT NULL,
   `RAZA` varchar(50) DEFAULT NULL,
-  `TIPO_ANIMAL` enum('Gato','Perro','Conejo') DEFAULT NULL,
-  `CHIP` varchar(50) DEFAULT NULL,
+  `TIPO_ANIMAL` enum('Gato','Perro','Conejo', 'Otros') DEFAULT NULL,
+  `CHIP` int DEFAULT NULL,
   `PASAPORTE` varchar(50) DEFAULT NULL,
   `SALUD` bit(1) DEFAULT NULL,
   `HISTORIAL_VETE` bit(1) DEFAULT NULL,
@@ -79,6 +79,7 @@ DROP TABLE IF EXISTS `donaciones`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `donaciones` (
+  `ID` int not NULL  auto_increment primary key,
   `IMPORTE` float DEFAULT NULL,
   `CONCEPTO` varchar(100) DEFAULT NULL,
   `NOMBRE` varchar(50) DEFAULT NULL,
@@ -86,8 +87,7 @@ CREATE TABLE `donaciones` (
   `APELLIDO_2` varchar(50) DEFAULT NULL,
   `CENTRO` bit(1) DEFAULT NULL,
   `FERIA` bit(1) DEFAULT NULL,
-  `FECHA` date default null,
-  `ID` int not NULL  auto_increment primary key
+  `FECHA` date default null
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -97,7 +97,7 @@ CREATE TABLE `donaciones` (
 
 LOCK TABLES `donaciones` WRITE;
 /*!40000 ALTER TABLE `donaciones` DISABLE KEYS */;
-INSERT INTO `donaciones` VALUES (10,'Donacion','Alice','Casanova','Navarro',_binary '\0',_binary '\0',1);
+#INSERT INTO `donaciones` VALUES (10,'Donacion','Alice','Casanova','Navarro',_binary '\0',_binary '\0',1);
 /*!40000 ALTER TABLE `donaciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -273,12 +273,16 @@ Direccion VARCHAR(80),
 Horario VARCHAR(50),
 Horas_semana float,
 Salario float,
+edad int,
 id_usuario int,
  foreign key (id_usuario) references usuarios(id)
 );
 
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+select * from familias;
+use sigma;
+select * from animales;
 --
 -- Dumping data for table `trabajadores`
 --
