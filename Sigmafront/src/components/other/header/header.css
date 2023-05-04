@@ -1,0 +1,30 @@
+header{
+  background-color: #0077B6;
+}
+.headerinside{
+  align-items: center;
+}
+
+nav{
+  float: right;
+  display: inline;
+}
+nav ul{
+  margin-right: 15px;
+  
+}
+
+nav ul li{
+  margin: 5px;
+  display: inline;
+  margin-right: 5px;
+}
+
+.logo{
+  margin-top: 14px;
+  margin-left: 10px;
+}
+Link{
+  color: black;
+}
+

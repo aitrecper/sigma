@@ -1,0 +1,86 @@
+.root {
+  width: 100vw;
+  height: 100vh;
+}
+body{
+  margin: 0;
+  background-color: #FFFAFF;
+  min-width: 75%;
+}
+
+.container {
+  display: grid;
+  grid-template-rows: 8.4vh auto 20vh;
+  grid-template-columns: 16% 84%;
+  min-height: 100vh;
+}
+
+.headerinside {
+  display: grid;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  background-color: #ccc;
+  align-content: space-between
+}
+
+.Logocentro{
+align-items: center;
+align-content: center;
+}
+
+.barralateral {
+  display: grid;
+  grid-row-start: 2;
+  grid-row-end: 4;
+  grid-column-start: 1;
+}
+
+.cuerpo {
+  background-color: #eee;
+  display: grid;
+  grid-row-start: 2;
+  grid-column-start: 2;
+}
+
+.footerinside {
+  display: grid;
+  grid-row-start: 3;
+  grid-column-start: 1  ;
+  grid-column-end: 3  ;
+  bottom: 0;
+  text-align: center;
+  background-color: #ffffff;
+}
+
+.containeroutside {
+  min-height: 100vh;
+}
+
+.cuerpooutside{
+  min-height:72.5vh ;
+  width: 100%;  
+}
+.cuerpooutside p, .cuerpooutside h1{
+  margin-left: 30px;
+  margin-right: 30px;
+}
+.cuerpo p, .cuerpo h1{
+  margin-left: 15px;
+  margin-right: 15px;
+  
+}
+
+
+.headeroutside{
+  background-color: #ccc;
+  height: 6vh;
+  width: 100%; 
+}
+
+.footeroutside{
+  width: 100%;
+  text-align:center;
+  height:auto; 
+}
