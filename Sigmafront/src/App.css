@@ -40,3 +40,25 @@
 .read-the-docs {
   color: #888;
 } */
+
+
+.image-container {
+  display: flex;
+  margin-left: 50vh;
+  align-items: center;
+  margin-top: 50vhpx;
+  margin-bottom: 20px;
+  min-height: 500px; /* Altura mínima del contenedor de la imagen */
+  width: 150vh;
+}
+
+.footer-container {
+  background-color: #f7f7f7;
+  justify-content: center;
+  padding: 40px 0;
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: center;
+  margin-top: 50vh; /* Margen superior negativo para que el Footer se coloque debajo del contenedor de la imagen */
+  align-items: center;
+}

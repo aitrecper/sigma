@@ -210,7 +210,7 @@ const setImporteSort = () => {
 
 
 
-<h2 className="cabecera">Facturación</h2>
+<h2 className="cabecera"></h2>
 
 
       {/* BOTONES */}

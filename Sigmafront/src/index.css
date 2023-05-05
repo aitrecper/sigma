@@ -38,7 +38,7 @@ align-content: center;
 }
 
 .cuerpo {
-  background-color: #eee;
+  background-color: #ffffff;
   display: grid;
   grid-row-start: 2;
   grid-column-start: 2;

@@ -1,75 +1,58 @@
-/*         *** Footer style ***        */
-
-.footer-basic {
-    color: #4b4c4d;
-
-}
-
-.footer-basic ul {
+.footer-container {
+    background-color: #f7f7f7;
+    padding: 40px 0;
+    font-size: 16px;
+    line-height: 1.6;
+    text-align: center;
+  }
+  
+  .footer-container ul {
     padding: 0;
     list-style: none;
-    text-align: center;
-    font-size: 18px; display: inline-block;
-    line-height: 1.6;
-    margin-bottom: 0;
-    margin-top: 0;
-}
-
-.footer-basic li {
+    margin-bottom: 20px;
+  }
+  
+  .footer-container ul li {
+    display: inline-block;
     padding: 0 10px;
-}
-
-.footer-basic ul a {
-    color: inherit;
-    text-decoration: none;
+  }
+  
+  .footer-container ul li a {
+    color: #4b4c4d;
     opacity: 0.8;
-}
-
-.footer-basic ul a:hover {
+    text-decoration: none;
+  }
+  
+  .footer-container ul li a:hover {
     opacity: 1;
-}
-
-.footer-basic .social {
+  }
+  
+  .footer-container .social {
     text-align: center;
-    padding-bottom: 10px;
-}
-
-.footer-basic .social>a {
-    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .footer-container .social a {
+    display: inline-block;
     width: 40px;
     height: 40px;
     line-height: 40px;
-    display: inline-block;
     text-align: center;
     border-radius: 50%;
     border: 1px solid #ccc;
     margin: 0 8px;
     color: inherit;
     opacity: 0.75;
-}
-
-.footer-basic .social>a:hover {
+    font-size: 24px;
+  }
+  
+  .footer-container .social a:hover {
     opacity: 0.9;
-}
-
-.footer-basic .copyright {
+  }
+  
+  .footer-container .copyright {
     margin-top: 15px;
-    text-align: center;
     font-size: 13px;
     color: #aaa;
     margin-bottom: 0;
-}
-
-/* Añadido por mi para que sea igual de ancho que la pantalla */
-.site-footer {
-    margin-top: 20px;
-    max-width: 100vw ;
-}
-
-/*      *** Otros ***        */
-.site {
-    margin-bottom: 2em;
-}
-.ul-inline li{
-    display: inline-block;
-}
+  }

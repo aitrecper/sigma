@@ -1,4 +1,4 @@
-header{
+/* header{
   background-color: #0077B6;
 }
 .headerinside{
@@ -26,5 +26,10 @@ nav ul li{
 }
 Link{
   color: black;
-}
+} */
 
+
+.logo {
+  transform: translateX(50%);
+  margin-top: auto; 
+}
