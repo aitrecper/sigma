@@ -7,15 +7,8 @@ import {EditOutlined} from '@ant-design/icons';
 import {CheckCircleOutlined } from '@ant-design/icons';
 import {CloseCircleOutlined } from '@ant-design/icons';
 import { Table, Input, Select } from 'antd';
-
-
-
-
-
-
-
-
-
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 
 
@@ -35,14 +28,20 @@ interface Facturas {
 
 /* Datos de ejemplo */
 
-
 const exampleData: Facturas[] = [
-  { id: 1,fecha:"01-01-2022",concepto: "luz",debe:10,haber: 0, saldo:-10 },
-  { id: 2,fecha:"01-01-2022",concepto: "luz",debe:0,haber:100, saldo:90 },
-  { id: 3,fecha:"01-01-2022",concepto: "luz",debe:0,haber:130, saldo:90 },
+  { id: 1, fecha: "01-01-2022", concepto: "Luz", debe: 20, haber: 0, saldo: -20 },
+  { id: 2, fecha: "02-01-2022", concepto: "Agua", debe: 15, haber: 0, saldo: -35 },
+  { id: 3, fecha: "03-01-2022", concepto: "Gasolina", debe: 0, haber: 30, saldo: -5 },
+  { id: 4, fecha: "04-01-2022", concepto: "Comida", debe: 50, haber: 0, saldo: -55 },
+  { id: 5, fecha: "05-01-2022", concepto: "Internet", debe: 45, haber: 0, saldo: -100 },
+  { id: 6, fecha: "06-01-2022", concepto: "Teléfono", debe: 25, haber: 0, saldo: -125 },
+  { id: 7, fecha: "07-01-2022", concepto: "Alquiler", debe: 0, haber: 500, saldo: 375 },
+  { id: 8, fecha: "01-01-2022", concepto: "Luz", debe: 20, haber: 0, saldo: -20 },
+  { id: 9, fecha: "02-01-2022", concepto: "Agua", debe: 15, haber: 0, saldo: -35 },
+  { id: 10, fecha: "03-01-2022", concepto: "Gasolina", debe: 0, haber: 30, saldo: -5 },
+  { id: 11, fecha: "04-01-2022", concepto: "Comida", debe: 50, haber: 0, saldo: -55 },
+  { id: 12, fecha: "05-01-2022", concepto: "Internet", debe: 45, haber: 0, saldo: -100 },
 ];
-
-
 
 
 
@@ -165,8 +164,19 @@ function HistorialFacturacion() {
     };
   });
  
-  // FILTRO
-
+  
+  const handleGuardarCambios = () => {
+    const nuevasFacturas = facturas.map((factura) => {
+      saldo += factura.debe - factura.haber;
+      return { ...factura, saldo };
+    });
+    // Aquí puedes agregar la lógica para guardar los cambios en tu base de datos o en algún otro lugar
+    console.log('Se han guardado los cambios:', nuevasFacturas);
+  };
+  
+  const handleCancelar = () => {
+    setIsEditingSelectedInvoices(false);
+  };
 
  
 
@@ -314,7 +324,7 @@ function HistorialFacturacion() {
         saldo: Number(event.target.value),
       })
     }
-    style={{ borderRadius: '5px', marginRight: '5px',width: '50px'  }}
+    style={{ borderRadius: '5px', marginLeft: '5px',width: '50px'  }}
   />
 </label>
 
@@ -361,11 +371,11 @@ function HistorialFacturacion() {
  
       {/* Campos del formulario */}
      
-   
-      <label >
-      Fecha:
-  <input
-    type="string"
+      <TextField
+  label="Fecha"
+  type="string"
+  variant="outlined"
+  size="small"
     value={newInvoiceData.fecha|| ''}
     onChange={(event) =>
       setNewInvoiceData({
@@ -373,17 +383,21 @@ function HistorialFacturacion() {
         fecha: event.target.value,
       })
     }
-    style={{ borderRadius: '5px',marginBottom: '10px',marginRight: '10px',marginLeft: '8px', marginTop:'20px' }}
+    style={{
+      width: '25vh', 
+      marginRight:'3vh',
+      marginTop:'2vh',
+      marginBottom:'2vh',
+    }}
   />
-</label>
 
 
 
-
-      <label className="camposrelleno">
-      Concepto:
-        <input
-          type="text"
+<TextField
+  label="Concepto"
+  type="text"
+  variant="outlined"
+  size="small"
           value={updatedData.concepto || ''}
           onChange={(event) =>
             setUpdatedData({
@@ -391,51 +405,110 @@ function HistorialFacturacion() {
               concepto: event.target.value,
             })
           }
-          style={{ borderRadius: '5px',marginBottom: '10px',marginRight: '10px',marginLeft: '10px' }}
+          style={{
+            width: '25vh', 
+      marginRight:'3vh',
+      marginTop:'2vh',
+      marginBottom:'2vh', 
+          }}
         />
-      </label>
 
 
-      <label >
-      Debe:
-        <input
-          type="number"
+      
+  <TextField
+  label="Debe"
+  type="number"
+  variant="outlined"
+  size="small"
           value={updatedData.debe || ''}
           onChange={(event) =>
             setUpdatedData({
               ...updatedData,
               debe: Number(event.target.value),
             })
-          }style={{ borderRadius: '5px',marginBottom: '10px',marginRight: '10px',marginLeft: '10px' }}
+          }
+          style={{
+            width: '25vh', 
+      marginRight:'3vh',
+      marginTop:'2vh',
+      marginBottom:'2vh',
+          }}
         />
-      </label>
-
-
+  <TextField
+  label="Haber"
+  type="number"
+  variant="outlined"
+  size="small"
+          value={updatedData.haber || ''}
+          onChange={(event) =>
+            setUpdatedData({
+              ...updatedData,
+              haber: Number(event.target.value),
+            })
+          }
+          style={{
+            width: '25vh', 
+            marginRight:'3vh',
+            marginTop:'2vh',
+            marginBottom:'2vh',
+          }}
+        />
  
 
 
-<label>
-    Saldo:
-  <input
-    type="number"
-    value={updatedData.saldo || ''}
-    onChange={(event) =>
-      setUpdatedData({
-        ...updatedData,
-        saldo: Number(event.target.value),
-      })
-    }style={{ borderRadius: '5px',marginBottom: '10px',marginRight: '10px',marginLeft: '10px',width: '50px' }}
-  />
-</label>
+  <TextField
+  label="Saldo"
+  type="number"
+  variant="outlined"
+  size="small"
+  value={updatedData.saldo || ''}
+  onChange={(event) =>
+    setUpdatedData({
+      ...updatedData,
+      saldo: Number(event.target.value),
+    })
+  }
+  style={{
+    width: '25vh', 
+      marginRight:'3vh',
+      marginTop:'2vh',
+      marginBottom:'2vh',
+  }}
+/>
      
 
 
-      <button type="submit" className="btn"style={{ borderRadius: '5px', marginBottom: '10px', marginRight: '10px', marginLeft: '10px',width: '150px', height:'25px' }}
-><CheckCircleOutlined/> Guardar cambios</button>
-<button
-  style={{ borderRadius: '5px', marginBottom: '10px', marginRight: '10px', marginLeft: '10px',width: '100px', height:'25px' }}
-  onClick={() => setIsEditingSelectedInvoices(false)}
-><CloseCircleOutlined/>  Cancelar </button>
+<div>
+    <button
+      type="submit"
+      className="btn"
+      style={{
+        borderRadius: '5px',
+        marginBottom: '10px',
+        marginRight: '',
+        marginLeft: '10px',
+        width: '150px',
+        height: '25px',
+      }}
+      onClick={handleGuardarCambios}
+    >
+      <Outlined /> Guardar cambios
+    </button>
+    <button
+      style={{
+        borderRadius: '5px',
+        marginBottom: '10px',
+        marginRight: '10px',
+        marginLeft: '10px',
+        width: '100px',
+        height: '25px',
+      }}
+      onClick={handleCancelar}
+    >
+      <CloseCircleOutlined /> Cancelar
+    </button>
+  </div>
+);
     </form>
 
 
@@ -482,3 +555,6 @@ function HistorialFacturacion() {
 
 
 export default HistorialFacturacion
+
+
+
