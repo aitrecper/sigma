@@ -33,6 +33,7 @@ CREATE TABLE `animales` (
   `GENERO` varchar(10) DEFAULT NULL,
   `EDAD` float DEFAULT NULL,
   `RAZA` varchar(50) DEFAULT NULL,
+  `COLOR` varchar(50) default null,
   `TIPO_ANIMAL` enum('Gato','Perro','Conejo', 'Otros') DEFAULT NULL,
   `CHIP` int DEFAULT NULL,
   `PASAPORTE` varchar(50) DEFAULT NULL,

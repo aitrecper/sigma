@@ -32,6 +32,9 @@ public class Animales {
     @Column(name = "raza")
     private String raza;
 
+//    @Column(name = "color")
+//    private String color;
+
     @Column(name = "tipo_animal")
     @Enumerated(EnumType.STRING)
     private TipoAnimal tipoAnimal;
