@@ -8,6 +8,7 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.*;
 import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.properties.HorizontalAlignment;
 import com.itextpdf.layout.properties.TextAlignment;
 import com.itextpdf.layout.Document;
 import com.itextpdf.text.*;
@@ -83,6 +84,8 @@ public class AnimalesPdf
                 Paragraph pTable = new Paragraph();
                 table1.addCell(functions.setCellText(animal));
                 pTable.add("");
+
+                pTable.setHorizontalAlignment(HorizontalAlignment.CENTER);
 
                 document.add(table1);
 
@@ -227,18 +230,18 @@ class Functions {
 
         Paragraph paragraph = new Paragraph();
         Text paragraphText1 = new Text(
-                """
-                        2º El adoptante declara adoptar al animal única y exclusivamente como animal de compañía.
-                        
-                        3º El animal entregado en adopción no podrá ser utilizado para:
-                          a.- Experimentación de cualquier tipo.
-                          b.- La participación en peleas o enfrentamientos con otros animales.
-                          c.- La cría.
-                          d.- Caza
-                          e.- Participación en cualquier tipo de espectáculo.
-                        \s
-                        """
+            "2º El adoptante declara adoptar al animal única y exclusivamente como animal de compañía.\n" +
+            "3º El animal entregado en adopción no podrá ser utilizado para:"
         );
+
+        Text paragraphText1_1 = new Text(
+          "  a.- Experimentación de cualquier tipo.\n" +
+          "  b.- La participación en peleas o enfrentamientos con otros animales.\n" +
+          "  c.- La cría.\n" +
+          "  d.- Caza\n" +
+          "  e.- Participación en cualquier tipo de espectáculo.\n\n"
+        );
+
 
         Text paragraphText2 = new Text(
           "4º En ningún caso se podrá someter al animal a cualquier forma de maltrato, tratamiento " +
@@ -290,6 +293,7 @@ class Functions {
         );
 
         paragraph.add(paragraphText1);
+        paragraph.add(paragraphText1_1);
         paragraph.add(paragraphText2);
         paragraph.add(paragraphText3);
         paragraph.add(paragraphText4);
