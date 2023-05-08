@@ -136,9 +136,7 @@ const HeaderComponent: React.FC<HeaderProps> = (props: HeaderProps) => {
           <Menu.Item key="/administracion/inventario">
             <Link to="/administracion/inventario">Inventario</Link>
           </Menu.Item>
-          <Menu.Item key="/administracion/usuarios">
-            <Link to="/administracion/usuarios">Usuarios</Link>
-          </Menu.Item>
+         
         </Menu.SubMenu>
 
 
@@ -156,14 +154,15 @@ const HeaderComponent: React.FC<HeaderProps> = (props: HeaderProps) => {
           onClick={handleMenuClick}
           open={openMenu}
         >
+          
           <Menu.Item key="/veterinario">
-            <Link to="/veterinario">Formulario</Link>
+            <Link to="/veterinario/gestiones">Gestiones</Link>
           </Menu.Item>
           <Menu.Item key="/veterinario">
-            <Link to="/veterinario">Gestiones</Link>
+            <Link to="/veterinario/facturas">Facturas</Link>
           </Menu.Item>
           <Menu.Item key="/veterinario">
-            <Link to="/veterinario">Facturas</Link>
+            <Link to="/veterinario/urgencias">Urgencias</Link>
           </Menu.Item>
         </Menu.SubMenu>
 
@@ -180,18 +179,16 @@ const HeaderComponent: React.FC<HeaderProps> = (props: HeaderProps) => {
           onClick={handleMenuClick}
           open={openMenu}
         >
-          <Menu.Item key="/administracion/cuidadores">
-            <Link to="/administracion/cuidadores">Gestion</Link>
+          <Menu.Item key="/familia/gestion">
+            <Link to="/familia/gestion">Gestion</Link>
           </Menu.Item>
-          <Menu.Item key="/administracion/facturacion">
-            <Link to="/administracion/facturacion">Adopción</Link>
+          <Menu.Item key="/familia/adopcion">
+            <Link to="/familia/adopcion">Adopción</Link>
           </Menu.Item>
           <Menu.Item key="/administracion/contabilidad">
-            <Link to="/administracion/contabilidad">Formulario de contacto"</Link>
+            <Link to="/familia/formulariocontacto">Formulario de contacto"</Link>
           </Menu.Item>
-          <Menu.Item key="/administracion/inventario">
-            <Link to="/administracion/inventario">Contratos</Link>
-          </Menu.Item>
+        
         </Menu.SubMenu>
 
 {/* A MODIFICAR */}
@@ -218,9 +215,7 @@ const HeaderComponent: React.FC<HeaderProps> = (props: HeaderProps) => {
           <Menu.Item key="/administracion/inventario">
             <Link to="/administracion/inventario">Inventario</Link>
           </Menu.Item>
-          <Menu.Item key="/administracion/usuarios">
-            <Link to="/administracion/usuarios">Usuarios</Link>
-          </Menu.Item>
+         
         </Menu.SubMenu>
 
         

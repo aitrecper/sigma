@@ -1,14 +1,9 @@
-import React from 'react';
-import Contabilidad from './Contabilidad';
-
-
-
-
-
-
-function Contabilidadapp() {
-  return <Contabilidad />;
-}
-
-
-export default Contabilidadapp;
+export interface FacturasInterfaz {
+  id:number;
+  fecha: string;
+  concepto:string;
+  debe: number;
+  haber:number;
+  saldo: number;
+  }
+export default FacturasInterfaz

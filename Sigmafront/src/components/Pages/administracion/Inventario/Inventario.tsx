@@ -1,305 +1,197 @@
-import React, { useState } from 'react';
-import { Divider, Radio } from 'antd';
-import { Button } from 'antd';
-import { PlusCircleOutlined } from '@ant-design/icons';
-import {MinusCircleOutlined } from '@ant-design/icons';
-import {EditOutlined} from '@ant-design/icons';
-import {CheckCircleOutlined } from '@ant-design/icons';
-import {CloseCircleOutlined } from '@ant-design/icons';
-import { Table, Input, Select } from 'antd';
-
-
-
-
-interface Inventario {
-    id:number;
-    producto: string;
-    tipologia:string;
-    abierto: string;
-    fechacaducidad:string;
-    cantidad: number;
-  }
-
-
-  const exampleData: Inventario [] = [
-    { id: 1,producto:"pienso",tipologia:"perro", abierto:"no",fechacaducidad:"01-01-2022", cantidad:1,}
-  ];
-
-
-function Inventario() {
-    const [inventario, setInventario] = useState<Inventario[]>(exampleData);
-    const [newInvoiceData, setNewInvoiceData] = useState<Partial<Inventario>>({});
-    const [selectedInvoices, setSelectedInvoices] = useState<number[]>([]);
-    const [isEditingSelectedInvoices, setIsEditingSelectedInvoices] = useState(false);
-    const [updatedData, setUpdatedData] = useState<Partial<Inventario>>({});
-    const [showImporte, setShowImporte] = useState(false);
-    const [showAddInvoiceForm, setShowAddInvoiceForm] = useState(false);
-    const [search,setSearch]=useState('');
-
-
-    const handleAddInvoice = (newInventario: Inventario) => {
-        setInventario((prevInvoices) => [...prevInvoices, newInventario]);
-        setNewInvoiceData({});
-      };
-
-
-      const handleEditSelectedInvoices = () => {
-        setInventario((prevInvoices) =>
-          prevInvoices.map((inventario) =>
-            selectedInvoices.includes(inventario.id)
-              ? { ...inventario, ...updatedData }
-              : inventario
-          )
-        );
-        setIsEditingSelectedInvoices(false);
-        setSelectedInvoices([]);
-        setUpdatedData({});
-      };
-
-
-      const handleDeleteSelectedInvoices = () => {
-        setInventario((prevInvoices) =>
-          prevInvoices.filter((inventario) => !selectedInvoices.includes(inventario.id))
-        );
-        setSelectedInvoices([]);
-      };
-
-
-      const handleSaveChanges = () => {
-        if (Object.keys(updatedData).length === 0) {
-          // No hay cambios por guardar, no hacemos nada
-          return;
-        }
-     
-        setInventario((prevInventario) =>
-          prevInventario.map((inventario) =>
-            selectedInvoices.includes(inventario.id)
-              ? { ...inventario, ...updatedData }
-              : inventario
-          )
-        );
-        setIsEditingSelectedInvoices(false);
-        setSelectedInvoices([]);
-        setUpdatedData({});
-      };
-   
-
-
-      const columns = [
-        { title: "Fecha", dataIndex: "producto" },
-        { title: "Tipologia", dataIndex: "tipologia" },
-        { title: "Abierto", dataIndex: "abierto" },
-        { title: "Fechacaducidad", dataIndex: "fechacaducidad" },
-        {title: "Cantidad",dataIndex: "cantidad"},
-      ];
-
-
-      const data = inventario.map((inventario) => {
-
-
-        return {
-          key: inventario.id,
-          producto: inventario.producto,
-          tipologia: inventario.tipologia,
-          abierto: inventario.abierto,
-          fechacaducidad: inventario.fechacaducidad,
-          cantidad: inventario.cantidad,
-        };
-      });
-
-
-      return (
-        <>
-
-
-
-
-<h2 className="INVENTARIO">CONTA</h2>
-
-
-{/* BOTONES */}
-
-
-  {/* BOTON CABECERA AGREGAR */}
-  <Button
-        type="button"
-        className="crud"
-        onClick={() => setShowAddInvoiceForm(true)}
-        disabled={selectedInvoices.length > 0}>
-        <PlusCircleOutlined />
-        Agregar producto
-</Button>
-
-
- {/* BOTON CABECERA EDITAR */}
-      <Button
-        className="crud"
-        onClick={() => setIsEditingSelectedInvoices(true)}
-        disabled={selectedInvoices.length === 0}><EditOutlined/>
-        Editar producto
-      </Button>
-
-
- {/* BOTON CABECERA ELIMINAR */}
-      <Button
-        className="crud"
-        onClick={handleDeleteSelectedInvoices}
-        disabled={selectedInvoices.length === 0}
-      ><MinusCircleOutlined/>
-        Eliminar producto
-      </Button>
-   
-
-
-    {showAddInvoiceForm && (
-  <form
-    onSubmit={(event) => {
-      event.preventDefault();
-      // datos de la nueva factura
-      const newInventario: Inventario = {
-        id: inventario.length + 1,
-        ...newInvoiceData,
-      };
-      handleAddInvoice(newInventario);
-      setShowAddInvoiceForm(false); // ocultar el formulario después de agregar una factura
-    }}
-  >
-    <h4>Editar producto </h4>
-    <label>
-
-
-
-
-
-
-    <label style={{ fontSize: '16px', marginBottom: '10px' }}>
-    Producto:
-  <input
-    type="string"
-    value={newInvoiceData.producto || ''}
-    onChange={(event) =>
-      setNewInvoiceData({
-        ...newInvoiceData,
-        producto:event.target.value,
-      })
-    }style={{ borderRadius: '5px',marginBottom: '10px',marginRight: '5px',marginLeft: '5px', }}
-  />
-</label>
-
-
-<label style={{ fontSize: '16px', marginBottom: '10px' }}>
-    Tipologia:
-  <input
-    type="string"
-    value={newInvoiceData.tipologia || ''}
-    onChange={(event) =>
-      setNewInvoiceData({
-        ...newInvoiceData,
-        tipologia:event.target.value,
-      })
-    }style={{ borderRadius: '5px',marginBottom: '10px',marginRight: '5px',marginLeft: '5px', }}
-  />
-</label>
-
-
-<label style={{ fontSize: '16px', marginBottom: '10px' }}>
-    Abierto:
-  <input
-    type="string"
-    value={newInvoiceData.abierto || ''}
-    onChange={(event) =>
-      setNewInvoiceData({
-        ...newInvoiceData,
-        abierto:event.target.value,
-      })
-    }style={{ borderRadius: '5px',marginBottom: '10px',marginRight: '5px',marginLeft: '5px', }}
-  />
-</label>
-
-
-<label style={{ fontSize: '16px', marginBottom: '10px' }}>
-   Fecha caducidad:
-  <input
-    type="string"
-    value={newInvoiceData.fechacaducidad || ''}
-    onChange={(event) =>
-      setNewInvoiceData({
-        ...newInvoiceData,
-        fechacaducidad:event.target.value,
-      })
-    }style={{ borderRadius: '5px',marginBottom: '10px',marginRight: '5px',marginLeft: '5px', }}
-  />
-</label>
-
-
-<label style={{ fontSize: '16px', marginBottom: '10px' }}>
-    Cantidad:
-  <input
-    type="number"
-    value={newInvoiceData.cantidad || ''}
-    onChange={(event) =>
-      setNewInvoiceData({
-        ...newInvoiceData,
-        cantidad:Number(event.target.value),
-      })
-    }style={{ borderRadius: '5px',marginBottom: '10px',marginRight: '5px',marginLeft: '5px', }}
-  />
-</label>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</label>
-
-
-    <button type="submit" className="btn"style={{ borderRadius: '5px', marginBottom: '10px', marginRight: '10px', marginLeft: '10px',width: '150px', height:'25px' }}
-><CheckCircleOutlined/> Guardar cambios</button>
-<button
-  style={{ borderRadius: '5px', marginBottom: '10px', marginRight: '10px', marginLeft: '10px',width: '100px', height:'25px' }}
-  onClick={() => setIsEditingSelectedInvoices(false)}
-><CloseCircleOutlined/>  Cancelar </button>
-    </form>
-
-
-)}
-
-
-
-
- {/* Listado de facturas */}
- <Table
-  className="lista"
-  columns={columns}
-  dataSource={data}
-  size="small"
-  pagination={{ pageSize: 5 }}
-  rowSelection={{
-    type: 'checkbox',
-    onChange: (selectedRowKeys: React.Key[], selectedRows: Inventario[]) => {
-      setSelectedInvoices(selectedRowKeys.map((key) => Number(key)));
-    },
-
-
-   
-  }}
- 
-/>
-
-
-</>
-  );
- 
+import React, { Component } from 'react';
+import { Table, Button, Modal, Form, Input } from 'antd';
+import { Inventario } from './Inventarioapp';
+import { FormInstance } from 'antd';
+
+interface ListaInventarioState {
+
+  modalVisible: boolean;
+  modalCargando: boolean;
+  modalTitle: string;
+  inventarioSeleccionado: Inventario;
+  inventario: Inventario[];
 }
 
+class ListaInventario extends Component<{}, ListaInventarioState> {
+  formRef = React.createRef<FormInstance>();
 
-export default Inventario
+  state: ListaInventarioState = {
+    modalVisible: false,
+    modalCargando: false,
+    modalTitle: '',
+    inventarioSeleccionado: {} as Inventario,
+    inventario: [],
+  };
+
+  componentDidMount() {
+    const inventario = [
+      {
+id: 1,
+nºfactura: 123,
+producto: 'pienso',
+tipologia: 'perro',
+abierto: 'no',
+fechacaducidad: '01-01-2022',
+cantidad: 1,
+},
+];
+// componentDidMount() {
+//   // Llama a la API para obtener la lista de inventario
+//   fetch("url_de_la_api")
+//     .then((response) => response.json())
+//     .then((data) => {
+//       const inventario = data.map((item: any) => ({
+//         id: item.id,
+//         producto: item.producto,
+//         tipologia: item.tipologia,
+//         abierto: item.abierto,
+//         fechacaducidad: item.fechacaducidad,
+//         cantidad: item.cantidad,
+//       }));
+//       this.setState({
+//         inventario: inventario,
+//       });
+//     })
+//     .catch((error) => console.error(error));
+// }
+
+
+  this.setState({
+    inventario: inventario,
+  });
+}
+mostrarModalAgregar = () => {
+  this.setState({
+    modalVisible: true,
+    modalTitle: 'Agregar producto',
+    inventarioSeleccionado: {} as Inventario,
+  });
+};
+
+  
+mostrarModalEditar = (inventario: Inventario) => {
+  this.setState({
+    modalVisible: true,
+    modalTitle: 'Editar producto',
+    inventarioSeleccionado: inventario,
+  });
+  this.formRef.current?.setFieldsValue(inventario);
+};
+ocultarModal = () => {
+  this.setState({
+    modalVisible: false,
+  });
+};
+
+guardarInventario = () => {
+  const form = this.formRef.current;
+  form?.validateFields().then((values) => {
+    const { inventario, inventarioSeleccionado } = this.state;
+    if (inventarioSeleccionado && inventarioSeleccionado.id) {
+      const indice = inventario.findIndex((f) => f.id === inventarioSeleccionado.id);
+      if (indice !== -1) {
+        inventario[indice] = {
+          ...inventarioSeleccionado,
+          ...values,
+        };
+        this.setState({
+          inventario,
+          modalVisible: false,
+        });
+      }
+    } else {
+      const nuevoInventario = {
+        id: inventario.length + 1,
+        ...values,
+      };
+      this.setState({
+        inventario: [...inventario, nuevoInventario],
+        modalVisible: false,
+      });
+    }
+    form.resetFields(); // Mover resetFields aquí
+  });
+};
+
+
+          eliminarInventario = (inventario: Inventario) => {
+            const nuevasInventario = this.state.inventario.filter((f) => f.id !== inventario.id);
+            this.setState({
+              inventario: nuevasInventario,
+            });
+          };
+  
+                render() {
+                  const { inventario, modalVisible, modalCargando, modalTitle, inventarioSeleccionado } = this.state;
+
+
+                  const columnas = [
+                    { title: 'id', dataIndex: 'id' },
+                    { title: 'NºFactura', dataIndex: 'nºactura' },
+                    { title: 'Tipologia', dataIndex: 'tipologia' },
+                    { title: 'Producto', dataIndex: 'producto' },
+                    { title: 'Abierto', dataIndex: 'abierto' },
+                    { title: 'Fechacaducidad', dataIndex: 'fechacaducidad' },
+                    { title: 'Cantidad', dataIndex: 'cantidad' },
+                    {
+                      title: 'Acciones',
+                      dataIndex: '',
+                      key: 'acciones',
+                      render: (inventario: Inventario) => (
+                        <>
+                          <Button type="link" onClick={() => this.mostrarModalEditar(inventario)}>
+                            Editar
+                          </Button>
+                          <Button type="link" danger onClick={() => this.eliminarInventario(inventario)}>
+                            Eliminar
+                          </Button>
+                        </>
+                      ),
+                    },
+                  ];
+
+
+                  return (
+                    <>
+      
+
+      
+      <Button type="primary" onClick={this.mostrarModalAgregar}>
+          Agregar inventario
+        </Button>
+    <Table dataSource={inventario} columns={columnas} />
+
+    <Modal
+          title={modalTitle}
+          visible={modalVisible}
+          onCancel={this.ocultarModal}
+          footer={[
+            <Button key="cancel" onClick={this.ocultarModal}>
+              Cancelar
+            </Button>,
+            <Button key="submit" type="primary" loading={modalCargando} onClick={this.guardarInventario}>
+              Guardar
+            </Button>,
+          ]}
+        >
+          <Form layout="vertical" ref={this.formRef} initialValues={inventarioSeleccionado}>
+            <Form.Item name="producto" label="Fecha" rules={[{ required: true, message: 'Este campo es obligatorio' }]}><Input type="date" /> </Form.Item>
+            
+            <Form.Item name="tipologia" label="Nºfactura" rules={[{ required: true, message: 'Este campo es obligatorio' }]}> <Input type="number" min={0} /></Form.Item>
+           
+            <Form.Item name="abierto" label="Tipologia" rules={[{ required: true, message: 'Este campo es obligatorio' }]}><Input /></Form.Item>
+            
+            <Form.Item name="fechacaducidad" label="Concepto" rules={[{ required: true, message: 'Este campo es obligatorio' }]}><Input /></Form.Item>
+
+            <Form.Item name="cantidad" label="Importe" rules={[{ required: true, message: 'Este campo es obligatorio' }]}><Input type="number" min={0} /></Form.Item>
+
+            
+
+          </Form>
+        </Modal>
+      </>
+    );
+  }
+}
+
+export default ListaInventario;

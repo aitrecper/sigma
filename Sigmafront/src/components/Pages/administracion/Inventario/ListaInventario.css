@@ -1,0 +1,6 @@
+/* ListaInventario.css */
+.ant-table-thead > tr > th {
+    background-color: blue;
+    color: white;
+  }
+  

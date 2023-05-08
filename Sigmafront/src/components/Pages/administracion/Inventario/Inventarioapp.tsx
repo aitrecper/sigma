@@ -1,10 +1,13 @@
-import React from 'react';
-import Inventario from './Inventario';
 
-
-function Inventarioapp() {
-  return <Inventario />;
+export interface Inventario {
+  id:number;
+  nºfactura:number;
+  producto: string;
+  tipologia:string;
+  abierto: string;
+  fechacaducidad:string;
+  cantidad: number;
 }
 
 
-export default Inventarioapp;
+export default Inventario

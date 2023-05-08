@@ -11,7 +11,12 @@ import DemoTabla from "../components/Pages/animales/demoTabla"
 import HistorialFacturacion from "../components/Pages/administracion/Facturacion/HistorialFacturacion"
 import Cuidadores from "../components/Pages/administracion/Cuidadores/Cuidadores"
 import Contabilidad from "../components/Pages/administracion/Contabilidad/Contabilidad"
-import Inventario from "../components/Pages/administracion/Inventario/Inventario"
+import Gestiones from "../components/Pages/veterinario/Gestiones"
+import ListaInventario from "../components/Pages/administracion/Inventario/Inventario"
+import Listafacturas2 from "../components/Pages/veterinario/Facturas"
+import ListaUrgencias from "../components/Pages/veterinario/Urgencias"
+// import TablasMatch from "../components/Pages/familia/adopcionapp"
+import Match from "../components/Pages/familia/match/Match"
 
 const AllRoutes = () => {
     return (
@@ -24,8 +29,12 @@ const AllRoutes = () => {
         <Route path='/administracion/facturacion' element={<HistorialFacturacion />}></Route>
         <Route path='/administracion/cuidadores' element={<Cuidadores />}></Route>
         <Route path='/administracion/contabilidad' element={<Contabilidad />}></Route>
-        <Route path='/administracion/inventario' element={<Inventario />}></Route>
-
+        <Route path='/administracion/inventario' element={<ListaInventario />}></Route>
+        <Route path='/veterinario/gestiones' element={<Gestiones/>}></Route>
+        <Route path='/veterinario/facturas' element={<Listafacturas2/>}></Route>
+        <Route path='/veterinario/urgencias' element={<ListaUrgencias/>}></Route>
+        {/* <Route path='/familia/adopcion' element={<TablasMatch/>}></Route>  */}
+        <Route path='/familia/adopcion' element={<Match/>}></Route>
       </Routes>
     )
   }

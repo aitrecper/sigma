@@ -1,458 +1,182 @@
-import React, { useState } from 'react';
-import { Divider, Radio } from 'antd';
-import { Button } from 'antd';
-import { PlusCircleOutlined } from '@ant-design/icons';
-import {MinusCircleOutlined } from '@ant-design/icons';
-import {EditOutlined} from '@ant-design/icons';
-import {CheckCircleOutlined } from '@ant-design/icons';
-import {CloseCircleOutlined } from '@ant-design/icons';
-import { Table, Input, Select } from 'antd';
+import React, { Component } from 'react';
+import { Table, Button, Modal, Form, Input, Select, Switch } from 'antd';
+import { CuidadorInterfaz } from './Cuidadorinterfaz';
 
+const { Option } = Select;
 
+interface ListaCuidadoresProps {}
 
+interface ListaCuidadoresState {
+  modalVisible: boolean;
+  modalCargando: boolean;
+  modalTitle: string;
+  cuidadorSeleccionado: CuidadorInterfaz;
+  cuidadores: CuidadorInterfaz[];
+}
 
-interface Ficha {
-    id:number;
-    nombre: string;
-    apellido1:string;
-    apellido2: string;
-    dni:string;
-    mail:string;
-    telefono:number;
-    usuario:string;
-  }
- 
-  const exampleData: Ficha[] = [
-    { id: 1, nombre:"Alicia", apellido1:"Casanova",apellido2:"Navarro",dni:"47404571B",mail:"ali@gmail.com",telefono:659852654, usuario:"alikasanova" },
-  ];
+class ListaCuidadores extends Component<ListaCuidadoresProps, ListaCuidadoresState> {
+  formRef = React.createRef<FormInstance>();
 
+  state: ListaCuidadoresState = {
+    modalVisible: false,
+    modalCargando: false,
+    modalTitle: '',
+    cuidadorSeleccionado: {} as CuidadorInterfaz,
+    cuidadores: [],
+  };
 
-  function Cuidadores() {
-    const [ficha, setFicha] = useState<Ficha[]>(exampleData);
-    const [newInvoiceData, setNewInvoiceData] = useState<Partial<Ficha>>({});
-    const [selectedInvoices, setSelectedInvoices] = useState<number[]>([]);
-    const [isEditingSelectedInvoices, setIsEditingSelectedInvoices] = useState(false);
-    const [updatedData, setUpdatedData] = useState<Partial<Ficha>>({});
-    // const [showImporte, setShowImporte] = useState(false);
-    const [showAddInvoiceForm, setShowAddInvoiceForm] = useState(false);
-    // const [search,setSearch]=useState('');
-
-
-    // FUNCIONES BOTONES
-    const handleAddInvoice = (newFicha: Ficha) => {
-        setFicha((prevInvoices) => [...prevInvoices, newFicha]);
-        setNewInvoiceData({});
-      };
-
-
-      const handleEditSelectedInvoices = () => {
-        setFicha((prevInvoices) =>
-          prevInvoices.map((ficha) =>
-            selectedInvoices.includes(ficha.id)
-              ? { ...ficha, ...updatedData }
-              : ficha
-          )
-        );
-        setIsEditingSelectedInvoices(false);
-        setSelectedInvoices([]);
-        setUpdatedData({});
-      };
-       
-      const handleDeleteSelectedInvoices = () => {
-        setFicha((prevInvoices) =>
-          prevInvoices.filter((ficha) => !selectedInvoices.includes(ficha.id))
-        );
-        setSelectedInvoices([]);
-      };
-
-
-      const handleSaveChanges = () => {
-        if (Object.keys(updatedData).length === 0) {
-          // No hay cambios por guardar, no hacemos nada
-          return;
-        }
-     
-        setFicha((prevFicha) =>
-          prevFicha.map((ficha) =>
-            selectedInvoices.includes(ficha.id)
-              ? { ...ficha, ...updatedData }
-              : ficha
-          )
-        );
-        setIsEditingSelectedInvoices(false);
-        setSelectedInvoices([]);
-        setUpdatedData({});
-      };
-
-
-
-
-    //   COLUMNAS
-      const columns = [
-     
-        { title: 'Nombre', dataIndex: 'nombre' },
-        { title: 'Apellido 1', dataIndex: 'apellido1' },
-        { title: 'Apellido 2', dataIndex: 'apellido2' },  
-        { title: 'DNI', dataIndex: 'dni' },
-        { title: 'Mail', dataIndex: 'mail' },
-        { title: 'Telefono', dataIndex: 'telefono' },
-        { title: 'Usuario', dataIndex: 'usuario' },
+  componentDidMount() {
+    const cuidadoresEjemplo = [
+      {
+        id: "1",
+        nombre: "Alicia",
+        apellido1: "Casanova",
+        apellido2: "Navarro",
+        dni: "47000000C",
+        mail: "ali@gmail.com",
+        telefono: "600999000",
+        usuario: "alinavarro"
+      },
     ];
-       
-    const data = ficha.map((ficha) => {
-        return {
-          key: ficha.id,
-          nombre: ficha.nombre,
-          apellido1:ficha.apellido1,
-          apellido2:ficha.apellido2,
-          dni:ficha.dni,
-          mail:ficha.mail,
-          telefono:ficha. telefono,
-          usuario:ficha.usuario,
-         
-        };
-      });
-     
-      return (
-        <>
-          <h2 className="cabecera">Cuidadores</h2>
-     
-          {/* BOTON CABECERA AGREGAR */}
-          <Button
-            type="button"
-            className="crud"
-            onClick={() => setShowAddInvoiceForm(true)}
-            disabled={selectedInvoices.length > 0}
-          >
-            <PlusCircleOutlined />
-            Agregar
-          </Button>
-     
-          {/* BOTON CABECERA EDITAR */}
-          <Button
-            className="crud"
-            onClick={() => setIsEditingSelectedInvoices(true)}
-            disabled={selectedInvoices.length === 0}
-          >
-            <EditOutlined/>
-            Editar
-          </Button>
-     
-          {/* BOTON CABECERA ELIMINAR */}
-          <Button
-            className="crud"
-            onClick={handleDeleteSelectedInvoices}
-            disabled={selectedInvoices.length === 0}
-          >
-            <MinusCircleOutlined/>
-            Eliminar
-          </Button>
-     
+    // Llama a la API o utiliza los datos de ejemplo en Gestiones.tsx para obtener la lista de tareas
+    //   fetch("url_de_la_api")
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     const cuidadores = data.map((item: any) => ({
+    //       id: item.id,
+    //       nombre: item.nombre,
+    //       apellido1: item.apellido1,
+    //       apellido2: item.apellido2,
+    //       dni: item.dni,
+    //       mail: item.mail,
+    //       telefono: item.telefono,
+    //       usuario: item.usuario,
+    //     }));
+    //     this.setState({ cuidadores });
+    //   })
+    //   .catch((error) => console.error(error));
+    // }, []);
+    this.setState({ cuidadores: cuidadoresEjemplo });
+  }
 
+  // ABRE LA VENTANA PARA AGREGAR
+  handleAgregarCuidador = () => {
+    this.setState({
+      modalVisible: true,
+      modalTitle: 'Agregar cuidador',
+      cuidadorSeleccionado: {} as CuidadorInterfaz,
+    });
+  };
 
+  // ABRE LA VENTANA PARA EDITAR
+  handleEditarCuidador = (cuidador: CuidadorInterfaz) => {
+    this.setState({
+      modalVisible: true,
+      modalTitle: 'Editar cuidador',
+      cuidadorSeleccionado: cuidador,
+    });
+    this.formRef.current?.setFieldsValue(cuidador);
+  };
 
+  // ELIMINA- FUTURA CONFIRMACION?
+  handleEliminarCuidador = (cuidador: CuidadorInterfaz) => {
+    const cuidadores = this.state.cuidadores.filter((item) => item.id !== cuidador.id);
+    this.setState({ cuidadores });
+  };
 
-
-
-          {/*AGREGAR NUEVO EMPLEADO */}
-          {showAddInvoiceForm && (
-            <form
-              onSubmit={(event) => {
-                event.preventDefault();
-                const newficha: Ficha = {
-                  id: ficha.length + 1,
-                  ...newInvoiceData,
-                };
-                handleAddInvoice(newficha);
-                setShowAddInvoiceForm(false); // ocultar el formulario después de agregar una factura
-              }}
-            >
-            <h4>Agregar Cuidador</h4>
-            <label>
-          <label style={{ fontSize: '16px', marginBottom: '10px' }}>
-            Nombre:
-            <input
-              type="text"
-              value={newInvoiceData.nombre || ''}
-              onChange={(event) =>
-                setNewInvoiceData({
-                  ...newInvoiceData,
-                  nombre: event.target.value,
-                })
-              }
-              style={{ borderRadius: '5px', marginBottom: '10px', marginRight: '5px', marginLeft: '5px' }}
-            />
-          </label>
-
-
-          <label style={{ fontSize: '16px', marginBottom: '10px' }}>
-            Apellido 1:
-            <input
-              type="text"
-              value={newInvoiceData.apellido1 || ''}
-              onChange={(event) =>
-                setNewInvoiceData({
-                  ...newInvoiceData,
-                  apellido1: event.target.value,
-                })
-              }
-              style={{ borderRadius: '5px', marginBottom: '10px', marginRight: '5px', marginLeft: '5px' }}
-            />
-          </label>
-
-
-          <label style={{ fontSize: '16px', marginBottom: '10px' }}>
-            Apellido 2:
-            <input
-              type="text"
-              value={newInvoiceData.apellido2 || ''}
-              onChange={(event) =>
-                setNewInvoiceData({
-                  ...newInvoiceData,
-                  apellido2: event.target.value,
-                })
-              }
-              style={{ borderRadius: '5px', marginBottom: '10px', marginRight: '5px', marginLeft: '5px' }}
-            />
-          </label>
-
-
-          <label style={{ fontSize: '16px', marginBottom: '10px' }}>
-            DNI:
-            <input
-              type="text"
-              value={newInvoiceData.dni || ''}
-              onChange={(event) =>
-                setNewInvoiceData({
-                  ...newInvoiceData,
-                  dni: event.target.value,
-                })
-              }
-              style={{ borderRadius: '5px', marginBottom: '10px', marginRight: '5px', marginLeft: '5px' }}
-            />
-          </label>
-          <label style={{ fontSize: '16px', marginBottom: '10px' }}>
-            Mail:
-            <input
-              type="text"
-              value={newInvoiceData.mail || ''}
-              onChange={(event) =>
-                setNewInvoiceData({
-                  ...newInvoiceData,
-                  mail:event.target.value,
-                })
-              }
-              style={{ borderRadius: '5px', marginBottom: '10px', marginRight: '5px', marginLeft: '5px' }}
-            />
-          </label>
-          <label style={{ fontSize: '16px', marginBottom: '10px' }}>
-           Telefono:
-            <input
-              type="number"
-              value={newInvoiceData.telefono || ''}
-              onChange={(event) =>
-                setNewInvoiceData({
-                  ...newInvoiceData,
-                  telefono:Number(event.target.value),
-                })
-              }
-              style={{ borderRadius: '5px', marginBottom: '10px', marginRight: '5px', marginLeft: '5px' }}
-            />
-          </label>
-          <label style={{ fontSize: '16px', marginBottom: '10px' }}>
-           Usuario:
-            <input
-              type="text"
-              value={newInvoiceData.usuario || ''}
-              onChange={(event) =>
-                setNewInvoiceData({
-                  ...newInvoiceData,
-                  usuario:event.target.value,
-                })
-              }
-              style={{ borderRadius: '5px', marginBottom: '10px', marginRight: '5px', marginLeft: '5px' }}
-            />
-          </label>
-          </label>
-
-
-          <button type="submit" className="btn"style={{ borderRadius: '5px', marginBottom: '10px', marginRight: '10px', marginLeft: '10px',width: '150px', height:'25px' }}
-><CheckCircleOutlined/> Guardar cambios</button>
-<button
-  style={{ borderRadius: '5px', marginBottom: '10px', marginRight: '10px', marginLeft: '10px',width: '100px', height:'25px' }}
-  onClick={() => setIsEditingSelectedInvoices(false)}
-><CloseCircleOutlined/>  Cancelar </button>
-</form>
-
-
-)}
-
-
-
-
-
-
- {/* EDITAR FACTURA */}
-{isEditingSelectedInvoices && (
-  <div>
- 
-    <form className="form"
-      onSubmit={(event) => {
-        event.preventDefault();
-                handleEditSelectedInvoices();
-      }}
-    >
- 
-      {/* Campos del formulario */}
-     
-   
-      <label >
-      Nombre:
-  <input
-    type="text"
-    value={newInvoiceData.nombre || ''}
-    onChange={(event) =>
-      setNewInvoiceData({
-        ...newInvoiceData,
-        nombre: event.target.value,
-      })
+  handleSubmit = (values: any) => {
+    const { cuidadores, cuidadorSeleccionado } = this.state;
+    const newCuidador = { ...cuidadorSeleccionado, ...values };
+    if (cuidadorSeleccionado.id) {
+      const index = cuidadores.findIndex((item) => item.id === cuidadorSeleccionado.id);
+      cuidadores[index] = newCuidador;
+    } else {
+      newCuidador.id = cuidadores.length + 1;
+      cuidadores.push(newCuidador);
     }
-    style={{ borderRadius: '5px',marginBottom: '10px',marginRight: '10px',marginLeft: '8px', marginTop:'20px' }}
-  />
-</label>
+    this.setState({ cuidadores, modalVisible: false });
+    this.formRef.current?.resetFields();
+  };
 
+  // CANCELA AGREGAR O EDITAR
+  handleCancel = () => {
+    this.setState({
+      modalVisible: false,
+    });
+    this.formRef.current?.resetFields();
+  };
 
+  render() {
+    const { modalVisible, modalTitle, cuidadorSeleccionado, cuidadores, modalCargando } = this.state;
 
+    return (
+      <>
+        <Button type="primary" onClick={this.handleAgregarCuidador} style={{ marginBottom: 16 }}>
+          Agregar cuidador
+        </Button>
+        <Table dataSource={cuidadores} rowKey="id">
+          <Table.Column title="ID" dataIndex="id" />
+          <Table.Column title="Nombre" dataIndex="nombre" />
+          <Table.Column title="Primer apellido" dataIndex="apellido1" />
+          <Table.Column title="Segundo apellido" dataIndex="apellido2" />
+          <Table.Column title="DNI" dataIndex="dni" />
+          <Table.Column title="Correo electrónico" dataIndex="mail" />
+          <Table.Column title="Teléfono" dataIndex="telefono" />
+          <Table.Column title="Usuario" dataIndex="usuario" />
+          <Table.Column
+            title=""
+            key="acciones"
+            render={(text, cuidador: CuidadorInterfaz) => (
+              <>
+                <Button onClick={() => this.handleEditarCuidador(cuidador)}>Editar</Button>
+                <Button onClick={() => this.handleEliminarCuidador(cuidador)} danger>
+                  Eliminar
+                </Button>
+              </>
+            )}
+          />
+        </Table>
+        <Modal
+          visible={modalVisible}
+          title={modalTitle}
+          onCancel={this.handleCancel}
+          footer={[
+            <Button key="back" onClick={this.handleCancel}>
+              Cancelar
+            </Button>,
+            <Button key="guardar" type="primary" form="cuidadorForm" htmlType="submit" loading={modalCargando}>
+              Guardar
+            </Button>,
+          ]}
+        >
+          <Form id="cuidadorForm" onFinish={this.handleSubmit} initialValues={cuidadorSeleccionado} ref={this.formRef}>
+            <Form.Item name="nombre" label="Nombre" rules={[{ required: true, message: 'Campo requerido' }]}>
+              <Input />
+            </Form.Item>
+            <Form.Item name="apellido1" label="Primer apellido" rules={[{ required: true, message: 'Campo requerido' }]}>
+              <Input />
+            </Form.Item>
+            <Form.Item name="apellido2" label="Segundo apellido">
+              <Input />
+            </Form.Item>
+            <Form.Item name="dni" label="DNI" rules={[{ required: true, message: 'Campo requerido' }]}>
+              <Input />
+            </Form.Item>
+            <Form.Item name="mail" label="Correo electrónico" rules={[{ required: true, message: 'Campo requerido' }]}>
+              <Input />
+            </Form.Item>
+            <Form.Item name="telefono" label="Teléfono" rules={[{ required: true, message: 'Campo requerido' }]}>
+              <Input type="number" />
+            </Form.Item>
+            <Form.Item name="usuario" label="Usuario" rules={[{ required: true, message: 'Campo requerido' }]}>
+              <Input />
+            </Form.Item>
+            
+          </Form>
+        </Modal>
+      </>
+    );
+  }
+}
 
-      <label >
-    Apellido 1:
-        <input
-          type="text"
-          value={updatedData.apellido1 || ''}
-          onChange={(event) =>
-            setUpdatedData({
-              ...updatedData,
-              apellido1: event.target.value,
-            })
-          }style={{ borderRadius: '5px',marginBottom: '10px',marginRight: '10px',marginLeft: '10px' }}
-        />
-      </label>
-
-
- 
-
-
-<label>
-Apellido 2:
-  <input
-    type="text"
-    value={updatedData.apellido2 || ''}
-    onChange={(event) =>
-      setUpdatedData({
-        ...updatedData,
-        apellido2: event.target.value,
-      })
-    }style={{ borderRadius: '5px',marginBottom: '10px',marginRight: '10px',marginLeft: '10px',width: '50px' }}
-  />
-</label>
-      <label >
-      DNI:
-        <input
-          type="text"
-          value={updatedData.dni|| ''}
-          onChange={(event) =>
-            setUpdatedData({
-              ...updatedData,
-              dni: event.target.value,
-            })
-          }style={{ borderRadius: '5px',marginBottom: '10px',marginRight: '10px',marginLeft: '10px',width: '50px' }}
-        />
-      </label>
-
-
-      <label >
-      Mail:
-        <input
-          type="text"
-          value={updatedData.mail|| ''}
-          onChange={(event) =>
-            setUpdatedData({
-              ...updatedData,
-              mail: event.target.value,
-            })
-          }style={{ borderRadius: '5px',marginBottom: '10px',marginRight: '10px',marginLeft: '10px',width: '80px' }}
-        />
-      </label>
-      <label >
-      Telefono:
-        <input
-          type="number"
-          value={updatedData.telefono|| ''}
-          onChange={(event) =>
-            setUpdatedData({
-              ...updatedData,
-              telefono:Number( event.target.value),
-            })
-          }style={{ borderRadius: '5px',marginBottom: '10px',marginRight: '10px',marginLeft: '10px',width: '80px' }}
-        />
-      </label>
-      <label >
-      Usuario:
-        <input
-          type="text"
-          value={updatedData.usuario|| ''}
-          onChange={(event) =>
-            setUpdatedData({
-              ...updatedData,
-              usuario: event.target.value,
-            })
-          }style={{ borderRadius: '5px',marginBottom: '10px',marginRight: '10px',marginLeft: '10px',width: '80px' }}
-        />
-      </label>
-
-
-
-
-      <button type="submit" className="btn"style={{ borderRadius: '5px', marginBottom: '10px', marginRight: '10px', marginLeft: '10px',width: '150px', height:'25px' }}
-><CheckCircleOutlined/> Guardar cambios</button>
-<button
-  style={{ borderRadius: '5px', marginBottom: '10px', marginRight: '10px', marginLeft: '10px',width: '100px', height:'25px' }}
-  onClick={() => setIsEditingSelectedInvoices(false)}
-><CloseCircleOutlined/>  Cancelar </button>
-    </form>
-
-
-  </div>
-)}
-
-
-
-
-
-
-
-
-{/* Listado de facturas */}
-                <Table
-                  className="lista"
-                  columns={columns}
-                  dataSource={data}
-                  size="small"
-                  pagination={{ pageSize: 5 }}
-                  rowSelection={{
-                    type: 'checkbox',
-                    onChange: (selectedRowKeys: React.Key[], selectedRows: Ficha[]) => {
-                      setSelectedInvoices(selectedRowKeys.map((key) => Number(key)));
-                    },
-                  }}
-                />
-           
-
-
-             
-         
-            </>      
-         );
-        }
-     
-      export default Cuidadores
+export default ListaCuidadores;
