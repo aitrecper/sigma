@@ -64,16 +64,22 @@ const HeaderComponent: React.FC<HeaderProps> = (props: HeaderProps) => {
             {isLogged ? "Cerrar sesión" : "Iniciar sesión"}
           </Button>
         </Menu.Item>
-        <Menu.Item key="2">
-          <Link to="/" >
+        <Menu.Item key="/inicio">
+          <Link to="/inicio">
             Inicio
           </Link>
         </Menu.Item>
-        <Menu.Item key="3" >
-          Acerca de
+        <Menu.Item key="/acercade">
+          <Link to="/acercade">
+          Acerca de</Link>
         </Menu.Item>
-        <Menu.Item key="4" >
-          Contacto
+        <Menu.Item key="/contacto">
+          <Link to="/contacto">
+          Contacto</Link>
+        </Menu.Item>
+        <Menu.Item key="/adoptame">
+          <Link to="/adoptame">
+          ¡Adoptame!</Link>
         </Menu.Item>
         
 
@@ -90,7 +96,7 @@ const HeaderComponent: React.FC<HeaderProps> = (props: HeaderProps) => {
           title={
             <span>
              
-              
+             <SettingOutlined />
               <span>Animales</span>
             </span>
           }
@@ -185,9 +191,7 @@ const HeaderComponent: React.FC<HeaderProps> = (props: HeaderProps) => {
           <Menu.Item key="/familia/adopcion">
             <Link to="/familia/adopcion">Adopción</Link>
           </Menu.Item>
-          <Menu.Item key="/administracion/contabilidad">
-            <Link to="/familia/formulariocontacto">Formulario de contacto"</Link>
-          </Menu.Item>
+         
         
         </Menu.SubMenu>
 

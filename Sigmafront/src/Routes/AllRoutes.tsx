@@ -17,6 +17,7 @@ import Listafacturas2 from "../components/Pages/veterinario/Facturas"
 import ListaUrgencias from "../components/Pages/veterinario/Urgencias"
 // import TablasMatch from "../components/Pages/familia/adopcionapp"
 import Match from "../components/Pages/familia/match/Match"
+import ContactForm from "../components/Pages/AdoptionForm"
 
 const AllRoutes = () => {
     return (
@@ -35,6 +36,7 @@ const AllRoutes = () => {
         <Route path='/veterinario/urgencias' element={<ListaUrgencias/>}></Route>
         {/* <Route path='/familia/adopcion' element={<TablasMatch/>}></Route>  */}
         <Route path='/familia/adopcion' element={<Match/>}></Route>
+        <Route path='/adoptame' element={<ContactForm/>}></Route>
       </Routes>
     )
   }
@@ -45,6 +47,7 @@ const AllRoutes = () => {
         <Route path='/home/' element={<Home />}></Route>
         <Route path='/home/formulario' element={<Formulario />}></Route>
         <Route path='/home/login' element={<Login />}></Route>
+        <Route path='/adoptame' element={<ContactForm/>}></Route>
   
   
       </Routes>
