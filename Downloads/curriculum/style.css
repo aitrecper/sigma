@@ -1,0 +1,187 @@
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:400,300italic,500,700);
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: url(http://www.omgubuntu.co.uk/wp-content/uploads/2017/09/ubuntu-1710-default-wallpaper-artful.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+img.link {
+    border-radius: 50%;
+    height: 194px;
+    width: 190px;
+}
+
+#todo {
+    width: 100%;
+    max-width: 900px;
+    margin: 2% auto 2% auto;
+    opacity: 0.9;
+}
+
+#top-editor {
+    background: #333333;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 15px 15px 0 0;
+    padding-right: 10px;
+    padding-left: 14px;
+}
+
+#nombre-archivo {
+    display: inline-block;
+    color: whitesmoke;
+}
+
+#botones {
+    float: right;
+}
+
+#m {
+    background: #AEA79F;
+    width: 12px;
+    height: 12px;
+    border-radius: 100%;
+    display: inline-block;
+    margin: 0 2px;
+    cursor: pointer;
+}
+
+#a {
+    background: #77216F;
+    width: 12px;
+    height: 12px;
+    border-radius: 100%;
+    display: inline-block;
+    margin: 0 2px;
+    cursor: pointer;
+}
+
+#x {
+    background: #ff4545;
+    width: 12px;
+    height: 12px;
+    border-radius: 100%;
+    display: inline-block;
+    margin: 0 2px;
+    cursor: pointer;
+}
+
+
+/* editor */
+
+#contenido {
+    background: #1B2225;
+    color: #cdd3de;
+    display: inline-block;
+    padding: 7px 10px 0 20px;
+    width: 100%;
+}
+
+scroll-container {
+    scroll-behavior: smooth;
+}
+
+a,
+a:active,
+a:visited {
+    text-decoration: none;
+    color: #98A8B5;
+}
+
+.nav {
+    color: #98A8B5;
+    font-weight: 400;
+    display: block;
+    text-align: center;
+}
+
+.nav a:hover {
+    text-decoration: none;
+    border-bottom: 1px dotted;
+    color: aquamarine;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.titulos {
+    color: #8EDCF5;
+}
+
+.id {
+    color: #F3A5F7;
+}
+
+.symbol {
+    color: #cccccc;
+}
+
+.titulos2 {
+    color: #CDFF8E;
+}
+
+.texto-rta {
+    color: #FFFFFF;
+}
+
+.important {
+    color: #FFA9A9;
+    font-style: italic;
+}
+
+#bottom-editor {
+    background: #333333;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 0 0 15px 15px;
+    padding-right: 10px;
+    text-align: center;
+}
+
+
+/* Portfolio */
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 10px;
+}
+
+.col {
+    flex: 25%;
+    max-width: 25%;
+    padding: 0 10px;
+}
+
+.col img {
+    margin-top: 8px;
+    vertical-align: middle;
+    border-radius: 50%;
+}
+
+.col img:hover {
+    box-shadow: 0 0 10px #E95420;
+}
+
+@media screen and (max-width: 800px) {
+    .col {
+        flex: 50%;
+        max-width: 50%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .col {
+        flex: 100%;
+        max-width: 100%;
+    }
+}
